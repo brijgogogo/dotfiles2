@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+
+# This file runs when a DM logs you into a graphical session.
+
+remaps &          # keyboard key remapping
+dunst &           # dunst for notifications
+unclutter &       # remove mouse when idle
+redshift &
+setbg &           # set wallpaper
+# connect-3-monitors
+run_xidlehook &   # lock system if idle
+
+# notify-send -i ~/.local/share/welcome.png "Welcome to Legion"
+notify-send "Welcome to Legion"
+
+mute-mic
+
+sleep 1 && firefox &
+sleep 1 && "$TERMINAL" &
+
+
+# dwmbar &          # runs dwm bar
+
+
+

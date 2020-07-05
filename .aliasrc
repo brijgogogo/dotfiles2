@@ -1,0 +1,61 @@
+#!/bin/sh
+
+alias vim='nvim'
+alias vimwiki='vim -c VimwikiIndex'
+
+alias cp="cp -iv"
+alias mv="mv -iv"
+alias rm="rm -v"
+alias rmdir='rmdir -v'			                # rm empty directory only
+mkdircd() { mkdir -p -v $1; cd $1 ;}	          # create folder then cd into it
+alias mkd="mkdir -pv"
+alias mkdir='mkdir -p -v'				# create if not exist, verbose
+alias ls="ls -hN --color=auto --group-directories-first"
+alias grep="grep --color=auto"
+alias diff="diff --color=auto"
+alias sdn="sudo shutdown -h now"
+
+alias f="$FILE"
+alias e="$EDITOR"
+alias v="$EDITOR"
+alias p="sudo pacman"
+
+# list
+alias l='ls'
+alias la='ls -A'
+alias ll='ls -lAh'
+alias ls='ls --color=auto'
+
+# aliases weather
+alias weather="curl -H 'Accept-Language: en' 'wttr.in/?1?n'"
+alias weatherCurrent="curl -H 'Accept-Language: en' 'wttr.in/?0?Q'"
+alias weatherFull="curl -H 'Accept-Language: en' 'wttr.in/'"
+
+alias du='du -d1 -h'					# max depth, human readable
+alias free='free -h'					# human readable
+alias df='df -hT --total'				# human readable, print filetype, and total
+alias info='info --vi-keys'				# GNU info act like man command
+alias mount='mount | column -t'				# align in column
+
+# Easier navigation: .., ..., ...., ....., ~ and -
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ~="cd ~"
+alias -- -="cd -"
+
+# Shortcuts
+alias d="cd ~/docs"
+alias dl="cd ~/Downloads"
+alias p="cd ~/docs/work"
+alias g="git"
+
+
+alias visudo='sudo EDITOR="$EDITOR" visudo'
+
+# Enable aliases to be sudo’ed
+alias sudo='sudo '
+
+# Get week number
+alias week='date +%V'

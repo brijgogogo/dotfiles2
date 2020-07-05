@@ -1,0 +1,92 @@
+# Statusbar loop
+
+dte() {
+  dte="$(date +"%a %d, %H:%M")"
+  echo -e " $dte"
+}
+
+upd() {
+  upd=`checkupdates | wc -l`
+  echo -e " $upd"
+}
+
+mem() {
+  # mem=`free | awk '/Mem/ {printf "%d/%d\n", $3 / 1024.0, $2 / 1024.0 }'`
+  mem=`free --mebi | sed -n '2{p;q}' | awk '{printf ("%2.2fGiB/%2.2fGiB", ( $3 / 1024), ($2 / 1024))}'`
+  echo -e " $mem"
+}
+
+cpu() {
+  cpu=`sensors | awk '/Core 0/ {print $3}'`
+  echo -e "$cpu"
+}
+
+# dsk() {
+  # disk=`printf "%s" "$(df -h "/home" | grep "total" | awk ' /[0-9]/ {print $4 "/" $3}')"`
+ #  dsk=`df -h /home | grep total | awk '{printf ("%s / %s", $4, $3)}'`
+  # echo -e "  $dsk"
+#  }
+
+battery_status() {
+  CHARGE=$(cat /sys/class/power_supply/BAT0/capacity)
+  STATUS=$(cat /sys/class/power_supply/BAT0/status)
+
+  if [ "$STATUS" = "Charging" ]; then
+    printf " %s%%" "$CHARGE"
+  elif [ "$STATUS" = "Discharging" ]; then
+    printf " %s%%" "$CHARGE"
+  else
+    printf "%s%%" "$CHARGE"
+  fi
+}
+
+vol() {
+  VOL=$(amixer get Master | tail -n1 | sed -r "s/.*\[(.*)%\].*/\1/")
+  if [ "$VOL" -eq 0 ]; then
+    printf " %s%%" "$VOL"
+  elif [ "$VOL" -gt 0 ] && [ "$VOL" -le 33 ]; then
+    printf " %s%%" "$VOL"
+  elif [ "$VOL" -gt 33 ] && [ "$VOL" -le 66 ]; then
+    printf " %s%%" "$VOL"
+  else
+    printf "  %s%%" "$VOL"
+  fi
+}
+
+micState() {
+  mic_state=`amixer get Capture | grep '\[off\]'`
+
+  if [ -z "$mic_state" ]
+  then
+    printf ""
+  else
+    printf ""
+  fi
+}
+
+netState() {
+  wifi_name=`iw dev | grep ssid | awk '{print $2}'`
+
+  if [ -z "$wifi_name" ]
+  then
+    ip_route=`ip route`
+
+    if [ -z "$ip_route" ]
+    then
+      # printf " no-network"
+      printf " no-network"
+    else
+      # ip_addr=`ip route get 1.2.3.4 | awk '{print $7}'`
+      printf ""
+    fi
+  else
+    printf " %s" "$wifi_name"
+  fi
+}
+
+while true; do
+   xsetroot -name "$(netState) | $(cpu) | $(mem) | $(upd) | $(micState) | $(vol) | $(battery_status) | $(dte)"
+   # sleep 1m    # Update time every minute
+   sleep 5s
+# done &
+done

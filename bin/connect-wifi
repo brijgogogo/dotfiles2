@@ -1,0 +1,4 @@
+sudo systemctl stop dhcpcd@enp7s0.service
+sudo ip link set enp7s0 down
+sudo ip link set wlp0s20f3 up
+ip addr

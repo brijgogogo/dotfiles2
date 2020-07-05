@@ -1,0 +1,12 @@
+# Statusbar loop
+
+dte() {
+  dte="$(date +"%a %d, %H:%M")"
+  echo -e " $dte"
+}
+
+while true; do
+   xsetroot -name "$(dte)"
+   sleep 1m
+# done &
+done

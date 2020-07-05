@@ -1,0 +1,4 @@
+amixer set 'Master' 10%+
+vol=`amixer get Master | tail -n1 | sed -r "s/.*\[(.*)%\].*/\1/"`
+msg="volume - $vol"
+notify-send "$msg"

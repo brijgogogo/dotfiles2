@@ -1,0 +1,1 @@
+arecord -vvv -f dat /dev/null
