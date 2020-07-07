@@ -59,3 +59,9 @@ alias sudo='sudo '
 
 # Get week number
 alias week='date +%V'
+
+
+# aliases for dotfile management vis git bare repo
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+# config config --local status.showUntrackedFiles no
+

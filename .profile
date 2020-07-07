@@ -15,10 +15,6 @@ export READER="zathura"
 export FILE="nnn"
 export STATUSBAR="${MY_WM}blocks"
 
-# aliases for dotfile management vis git bare repo
-alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-# config config --local status.showUntrackedFiles no
-
 # read .bashrc
 if [ -f ~/.bashrc ]; then . ~/.bashrc; fi
 
