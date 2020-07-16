@@ -1,0 +1,27 @@
+ # feh vim-like key bindings
+# image navigation ...
+next_img l Right space
+prev_img h Left BackSpace
+
+# zooming
+zoom_in  plus
+zoom_out minus
+zoom_default equal
+zoom_fit slash
+zoom_fill exclam F
+scroll_up K
+scroll_down J
+scroll_left H
+scroll_right L
+toggle_fullscreen F11 f
+
+# show/hide file-name
+toggle_filenames n
+
+
+# file manipulation
+delete C-d
+reload_image r
+
+# program
+quit q

@@ -46,7 +46,10 @@ call minpac#add('tpope/vim-projectionist')
 call minpac#add('tpope/vim-dispatch')
 call minpac#add('radenling/vim-dispatch-neovim')
 call minpac#add('leafgarland/typescript-vim')
+
 call minpac#add('vimwiki/vimwiki')
+call minpac#add('iamcco/markdown-preview.nvim', {'do': 'call mkdp#util#install()'})
+
 call minpac#add('dbeniamine/todo.txt-vim')
 call minpac#add('ap/vim-css-color')
 call minpac#add('mattn/vim-gist')
@@ -589,3 +592,10 @@ let g:user_emmet_settings = {
 \      'extends' : 'jsx',
 \  },
 \}
+
+
+" edit as per current file location
+map ,e :e <C-R>=expand("%:p:h") . "/" <CR>
+map ,t :tabe <C-R>=expand("%:p:h") . "/" <CR>
+map ,s :split <C-R>=expand("%:p:h") . "/" <CR>
+

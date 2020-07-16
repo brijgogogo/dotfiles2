@@ -34,6 +34,7 @@ export FZF_DEFAULT_COMMAND='rg --files --follow --hidden --ignore'
 # source /usr/share/fzf/completion.bash
 
 source /usr/share/bash-completion/bash_completion
+source ~/bin/buku-completion.bash
 
 export HISTCONTROL=ignoredups # ignore duplicates in bash history
 shopt -s autocd # auto cd when entering just a path

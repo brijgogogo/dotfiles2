@@ -1,0 +1,9 @@
+.nvm
+go
+.mozilla
+.cache
+.dotfiles
+temp
+.npm
+tools
+node_modules
