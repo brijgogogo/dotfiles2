@@ -28,16 +28,21 @@ export NNN_PLUG='o:fzopen;p:mocplay;d:diffs;m:nmount;n:notes;v:imgviu;t:imgthumb
 source /usr/share/nvm/init-nvm.sh
 
 # FZF
-export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --height 40%"
-export FZF_DEFAULT_COMMAND='rg --files --follow --hidden --ignore'
-# source /usr/share/fzf/key-bindings.bash
-# source /usr/share/fzf/completion.bash
+# export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --height 40%"
+export FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
+# export FZF_DEFAULT_COMMAND='rg --files --follow --hidden --ignore'
+export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git --color=always'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+
+source /usr/share/fzf/key-bindings.bash
+source /usr/share/fzf/completion.bash
 
 source /usr/share/bash-completion/bash_completion
 source ~/bin/buku-completion.bash
 
-export HISTCONTROL=ignoredups # ignore duplicates in bash history
-shopt -s autocd # auto cd when entering just a path
+# export HISTCONTROL=ignoredups # ignore duplicates in bash history
+# shopt -s autocd # auto cd when entering just a path
 
 # Start graphical server on tty1 if not already running.
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x Xorg >/dev/null && exec startx

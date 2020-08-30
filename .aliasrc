@@ -3,6 +3,8 @@
 alias vim='nvim'
 alias vimwiki='vim -c VimwikiIndex'
 
+alias src="source ~/.bashrc"
+
 alias cp="cp -iv"
 alias mv="mv -iv"
 alias rm="rm -v"
@@ -21,10 +23,11 @@ alias v="$EDITOR"
 alias p="sudo pacman"
 
 # list
+alias ls="exa --group-directories-first"
+# alias ls='ls --color=auto'
 alias l='ls'
 alias la='ls -A'
 alias ll='ls -lAh'
-alias ls='ls --color=auto'
 
 # aliases weather
 alias weather="curl -H 'Accept-Language: en' 'wttr.in/?1?n'"

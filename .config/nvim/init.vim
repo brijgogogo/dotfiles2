@@ -65,6 +65,7 @@ call minpac#add('mhinz/vim-startify')
 
 " call minpac#add('preservim/nerdcommenter')
 call minpac#add('tpope/vim-commentary')
+call minpac#add('tpope/vim-abolish')
 
 " call minpac#add('dense-analysis/ale')
 call minpac#add('neoclide/coc.nvim', { 'branch' : 'release' })
