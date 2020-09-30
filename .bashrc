@@ -113,3 +113,5 @@ export HISTFILE=~/.bash_eternal_history
 # http://superuser.com/questions/20900/bash-history-loss
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
+
+source /home/vik/.config/broot/launcher/bash/br

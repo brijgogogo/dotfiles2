@@ -1,6 +1,48 @@
+syntax on "turn syntax highlighting on
+set backspace=indent,eol,start " allows backspace
+set hidden " allows to have change not written in hidden buffers
+
+" Indentation
+set expandtab " pressing <TAB> inserts softtabstop amount of space characters
+set shiftwidth=2 " tab to spaces on press of >>, << or ==
+set softtabstop=2 " tab to spaces press of <TAB> or <BS>
+" set autoindent " copies the indentation from the previous line, when starting a new line
+" set smartindent " automatically inserts one extra level of indentation in some cases (like C-like files)
+" https://vim.fandom.com/wiki/Indenting_source_code
+
+set scrolloff=3
+set sidescrolloff=5
+
+" :help clipboard
+set clipboard+=unnamedplus " use system clipboard
+set number
+set relativenumber
+
+" see value of an option
+" :echo &wrap
+
+set nowrap
+set linebreak " don't break words when wrapping text
+
+set noswapfile
+set nobackup
+set nowritebackup
+
+" persistent undo
+" :help undo-persistence
+" set undodir=~/.config/nvim/undodir
+set undofile
+
+" show bar on 80th column
+set colorcolumn=80
+highlight ColorColumn ctermbg=0 guibg=lightgray
+
 " set runtimepath^=~/.vim runtimepath+=~/.vim/after
 " let &packpath = &runtimepath
 " source ~/.vim/vimrc
+
+let $RTP=split(&runtimepath, ',')[0]
+let $RC="$HOME/.config/nvim/init.vim"
 
 function!PrintRuntimePathValue()
 	echo join(split(&runtimepath,','),"\n")
@@ -8,30 +50,10 @@ endfunction
 
 command! PrintRTP call PrintRuntimePathValue()
 
-set hidden " allows to have change not written in hidden buffers
-set clipboard+=unnamedplus " use system clipboard
-set number
-set relativenumber
 
-""""""""" https://github.com/neoclide/coc.nvim """""""""""""""""""
-" Some servers have issues with backup files
-set nobackup
-set nowritebackup
+set path=.,** " set path to current directory and all subdirectories
 
-" Give more space for displaying messages.
-set cmdheight=2
-
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300
-
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
-
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-set signcolumn=yes
-
+" set list " show invisible characters \t,\n (use :set list! to turn off)
 
 " git clone minpac in .vim/pack/minpack/opt/
 packadd minpac
@@ -40,7 +62,6 @@ call minpac#init()
 call minpac#add('k-takata/minpac',{'type':'opt'})
 call minpac#add('tpope/vim-unimpaired')
 call minpac#add('tpope/vim-scriptease', {'type':'opt'})
-call minpac#add('tpope/vim-surround')
 call minpac#add('junegunn/fzf.vim')
 call minpac#add('tpope/vim-projectionist')
 call minpac#add('tpope/vim-dispatch')
@@ -58,21 +79,13 @@ call minpac#add('mattn/vim-gist')
 call minpac#add('mcchrish/nnn.vim')
 call minpac#add('moll/vim-node')
 call minpac#add('tpope/vim-eunuch')
-call minpac#add('tpope/vim-fugitive')
 call minpac#add('tpope/vim-vinegar')
 
+" sessions
 call minpac#add('mhinz/vim-startify')
+call minpac#add('tpope/vim-obsession')
 
-" call minpac#add('preservim/nerdcommenter')
-call minpac#add('tpope/vim-commentary')
 call minpac#add('tpope/vim-abolish')
-
-" call minpac#add('dense-analysis/ale')
-call minpac#add('neoclide/coc.nvim', { 'branch' : 'release' })
-call minpac#add('fatih/vim-go')
-
-" call minpac#add('diepm/vim-rest-console')
-call minpac#add('aquach/vim-http-client')
 
 " themes
 call minpac#add('sonph/onehalf', {'subdir' : 'vim'})
@@ -81,9 +94,25 @@ call minpac#add('dracula/vim')
 
 call minpac#add('ryanoasis/vim-devicons')
 
+" git
+call minpac#add('tpope/vim-fugitive') " git commands from vim
+call minpac#add('airblade/vim-gitgutter') " show git diff markers
+call minpac#add('rhysd/git-messenger.vim') " see history of line
+" call minpac#add('jreybert/vimagit')
+
+" editing
+call minpac#add('mbbill/undotree')
 
 " programming
 call minpac#add('mattn/emmet-vim')
+" call minpac#add('preservim/nerdcommenter')
+call minpac#add('tpope/vim-commentary') " code commenter
+call minpac#add('tpope/vim-surround')
+" call minpac#add('dense-analysis/ale')
+call minpac#add('neoclide/coc.nvim', { 'branch' : 'release' })
+call minpac#add('fatih/vim-go')
+" call minpac#add('diepm/vim-rest-console')
+call minpac#add('aquach/vim-http-client')
 
 command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update('', {'do': 'call minpac#status()'})
 command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
@@ -94,26 +123,20 @@ command! PackStatus packadd minpac | source $MYVIMRC | call minpac#status()
 let mapleader=','
 let maplocalleader = "\\" " second leader key, meant to be a prefix for mappings that only take effect for certain file types
 
+" :help mapping
 nnoremap <leader>ev :tabedit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader>ip :source $MYVIMRC<cr>:PackUpdate<cr>
 nnoremap <leader>eb :tabedit ~/.bashrc<cr>
 nnoremap <leader>et :tabedit ~/docs/cloud/dropbox_b1/Apps/Simpletask/todo.txt<cr>
 
+
+" :help termguicolors
+set termguicolors " enables true color
 " set background=dark
 " set t_Co=256
 colorscheme onehalfdark " nord onehalflight
 
-" Indentation
-set expandtab " pressing <TAB> inserts softtabstop amount of space characters
-set shiftwidth=2 " tab to spaces on press of >>, << or ==
-set softtabstop=2 " tab to spaces press of <TAB> or <BS>
-" set autoindent " copies the indentation from the previous line, when starting a new line
-" set smartindent " automatically inserts one extra level of indentation in some cases (like C-like files)
-" https://vim.fandom.com/wiki/Indenting_source_code
-
-set scrolloff=3
-set sidescrolloff=5
 
 " tabs
 for i in range(1, 9)
@@ -135,7 +158,7 @@ nnoremap <leader>p "+p
 " FZF
 let g:fzf_prefer_tmux = 1
 nnoremap <C-p> :<C-u>FZF<CR>
-nnoremap <leader>b :Buffers<CR>
+nnoremap ; :Buffers<CR>
 nnoremap <leader>h :History<CR>
 " C-T : new tab
 " C-X : new split
@@ -210,7 +233,7 @@ command! -bang -nargs=* WikiSearch
 set hlsearch
 set incsearch
 set ignorecase
-set smartcase
+set smartcase " case sensitive search only when there is a capital letter
 nnoremap <leader><space> :nohlsearch<CR>
 nnoremap <leader>/ :g//#<Left><Left>
 
@@ -286,6 +309,11 @@ let g:currentmode={
        \ 'c'  : 'Command ',
        \}
 
+function! GitStatus()
+  let [a,m,r] = GitGutterGetHunkSummary()
+  return printf('+%d ~%d -%d', a, m, r)
+endfunction
+
 " http://vimdoc.sourceforge.net/htmldoc/options.html#'statusline'
 " %f: file name
 " %F: full file name
@@ -307,15 +335,36 @@ set statusline+=\ %r
 set statusline+=%#CursorLine#     " colour
 set statusline+=\ %y
 set statusline+=%{StatuslineGit()}
+" set statusline+=%{GitStatus()} " show added, modified, removed line count
 set statusline+=%=
 set statusline+=%q
 " set statusline+=%#CursorIM#     " colour
 " set statusline+=%#Cursor#               " colour
 set statusline+=[%l,%c/%L]
-
+set statusline+=%{ObsessionStatus()} " adds vim-obsession indicator if in session
 
 
 """""""""""""""" COC """"""""""""""""""""""'
+" Give more space for displaying messages.
+set cmdheight=2
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" :h ins-completion
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
 " https://github.com/neoclide/coc.nvim/wiki/Using-the-configuration-file
 " command highlighting in json
 autocmd FileType json syntax match Comment +\/\/.\+$+
@@ -455,11 +504,6 @@ nnoremap <silent> <space>x  :<C-u>CocCommand explorer<CR>
 " this is handled by LanguageClient [LC]
 let g:go_def_mapping_enabled = 0
 
-" see value of an option
-" :echo &wrap
-
-set linebreak " don't break words when wrapping text
-
 " show hidden characters
 set listchars=tab:→\ ,eol:¬,trail:.
 
@@ -483,12 +527,6 @@ endfunction
 
 nmap <Leader>j :call GotoJump()<CR>
 
-" window resize
-"nnoremap <silent> <leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
-"nnoremap <silent> <leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
-
-nnoremap <silent> <leader>+ :vertical resize +5<CR>
-nnoremap <silent> <leader>- :vertical resize -5<CR>
 
 " highlight todo/fixme
 "https://vi.stackexchange.com/questions/15505/highlight-whole-todo-comment-line
@@ -600,3 +638,34 @@ map ,e :e <C-R>=expand("%:p:h") . "/" <CR>
 map ,t :tabe <C-R>=expand("%:p:h") . "/" <CR>
 map ,s :split <C-R>=expand("%:p:h") . "/" <CR>
 
+" movement between windows
+nnoremap <leader>h :wincmd h<CR>
+nnoremap <leader>j :wincmd j<CR>
+nnoremap <leader>k :wincmd k<CR>
+nnoremap <leader>l :wincmd l<CR>
+
+" window resize
+"nnoremap <silent> <leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
+"nnoremap <silent> <leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
+nnoremap <silent> <leader>+ :vertical resize +5<CR>
+nnoremap <silent> <leader>- :vertical resize -5<CR>
+
+nnoremap <leader>u :UndotreeShow<CR>
+
+
+autocmd FileType yaml set tabstop=2 shiftwidth=2
+
+" gitgutter
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
+
+" insert timestamp
+nmap <F3> a<C-R>=strftime("%Y-%m-%d %a %I:%M %P")<CR><Esc>
+imap <F3> a<C-R>=strftime("%Y-%m-%d %a %I:%M %P")<CR>
+
+" netrw
+" Vim-vinegar key - clashes with vimwiki
+" nmap <Nop> <Plug>VimwikiRemoveHeaderLevel
+nmap <leader>- <Plug>VimwikiRemoveHeaderLevel
+" start with dot files hidden
+let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'

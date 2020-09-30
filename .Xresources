@@ -21,6 +21,8 @@ xscreensaver.unfade: false
 ! ===== urxvt =====
 URxvt.scrollBar: off
 URxvt.font: xft:monospace:size=12
+!URxvt.font: xft:SourceCodePro-Regular:size=9.5:minspace=False
+!URxvt.font: xft:Fira Code Nerd Font:size=8:minspace=False, xft:Symbola:size=11
 URxvt.internalBorder:     22
 
 
@@ -46,22 +48,64 @@ URxvt.internalBorder:     22
 !*color15:	#BEBEC1
 
 ! Dracula Xresources palette
-*.foreground: #F8F8F2
-*.background: #282A36
-*.color0:     #000000
-*.color8:     #4D4D4D
-*.color1:     #FF5555
-*.color9:     #FF6E67
-*.color2:     #50FA7B
-*.color10:    #5AF78E
-*.color3:     #F1FA8C
-*.color11:    #F4F99D
-*.color4:     #BD93F9
-*.color12:    #CAA9FA
-*.color5:     #FF79C6
-*.color13:    #FF92D0
-*.color6:     #8BE9FD
-*.color14:    #9AEDFE
-*.color7:     #BFBFBF
-*.color15:    #E6E6E6
+!*.foreground: #F8F8F2
+!*.background: #282A36
+!*.color0:     #000000
+!*.color8:     #4D4D4D
+!*.color1:     #FF5555
+!*.color9:     #FF6E67
+!*.color2:     #50FA7B
+!*.color10:    #5AF78E
+!*.color3:     #F1FA8C
+!*.color11:    #F4F99D
+!*.color4:     #BD93F9
+!*.color12:    #CAA9FA
+!*.color5:     #FF79C6
+!*.color13:    #FF92D0
+!*.color6:     #8BE9FD
+!*.color14:    #9AEDFE
+!*.color7:     #BFBFBF
+!*.color15:    #E6E6E6
 
+! =======color scheme==========
+
+*background:	#FFFFFF
+*foreground:	#263640
+*cursorColor:	#3d3d29
+*color0:	#263640
+*color1:	#cc7a00
+*color2:	#00cca3
+*color3:	#666600
+*color4:	#666666
+*color5:	#3d3d5c
+*color6:	#006680
+*color7:	#494b53
+*color8:	#263640
+*color9:	#cc7a00
+*color10:	#00cca3
+*color11:	#666600
+*color12:	#666666
+*color13:	#3d3d5c
+*color14:	#006680
+*color15:	#494b53
+
+! =======color scheme==========
+!*background:	#0e1619
+!*foreground:	#FFFFFF
+!*cursorColor:	#BF80FF
+!*color0:	#282A36
+!*color1:	#d98cb3
+!*color2:	#808080
+!*color3:	#00b38f
+!*color4:	#808080
+!*color5:	#A3A3C2
+!*color6:	#7575A3
+!*color7:	#a6a6a6
+!*color8:	#414458
+!*color9:	#d98cb3
+!*color10:	#808080
+!*color11:	#00b38f
+!*color12:	#808080
+!*color13:	#A3A3C2
+!*color14:	#7575A3
+!*color15:	#a6a6a6
