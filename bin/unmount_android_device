@@ -1,0 +1,2 @@
+fusermount -u ~/temp/mtp
+echo "unmount done"

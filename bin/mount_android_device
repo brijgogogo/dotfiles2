@@ -1,0 +1,2 @@
+jmtpfs ~/temp/mtp
+echo "loaded at ~/temp/mtp"

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# adds currently select url to buku
+
+xsel | buku -a
+
+url=`xsel --clipboard`
+notify-send "Added Bookmark" "$url"

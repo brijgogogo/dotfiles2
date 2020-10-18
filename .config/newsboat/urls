@@ -4,6 +4,13 @@ http://blog.stevensanderson.com/feed/ "code"
 
 https://www.reddit.com/r/vim/.rss
 
+# programming
+https://blog.sapiensworks.com/feed.atom "programming"
+https://www.brandonsmith.ninja/ "programming"
+https://josephg.com/blog/rss/ "programming"
+https://martinfowler.com/feed.atom "programming"
+https://arslan.io/posts/index.xml "programming"
+
 # tech
 https://opensource.com/feed "linux" "tech"
 http://feeds.hanselman.com/ScottHanselman "tech"
@@ -39,12 +46,9 @@ https://jvns.ca/atom.xml "tech"
 https://www.linuxcareers.com/jobs/rss/ "linux"
 https://blog.logrocket.com/rss "js"
 https://apex.sh/blog/feed.rss "js"
-https://www.brandonsmith.ninja/ "programming"
-https://josephg.com/blog/rss/ "programming"
 https://javascriptweekly.com/rss/1jomce8i "js"
 https://javascriptweekly.com/rss "js"
 https://nolanlawson.com/feed/
-https://martinfowler.com/feed.atom "programming"
 https://www.danclarke.com/rss ".net"
 https://www.microsoft.com/en-us/research/feed/
 https://wakeupandcode.com/feed/
@@ -52,7 +56,6 @@ https://sunaku.github.io/index.atom "*nix"
 https://friendo.monster/rss.xml "*nix"
 https://hexdsl.co.uk/rss.xml "*nix"
 http://www.hamvocke.com/feed.xml "*nix"
-https://arslan.io/posts/index.xml "programming"
 https://byteofmath.com/rss "math"
 https://www.ribice.ba/index.xml "golang"
 https://martinheinz.dev/rss "golang"

@@ -1,0 +1,8 @@
+#!/bin/bash
+intern=DP-4
+extern1=DP-2.8
+extern2=DP-2.1
+
+xrandr --output "$intern" --auto --output "$extern1" --off --output "$extern2" --off
+
+setbg

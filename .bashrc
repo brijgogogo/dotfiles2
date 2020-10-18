@@ -114,4 +114,5 @@ export HISTFILE=~/.bash_eternal_history
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 
-source /home/vik/.config/broot/launcher/bash/br
+# source /home/vik/.config/broot/launcher/bash/br
+# export PATH="$HOME/.cargo/bin:$PATH"
