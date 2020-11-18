@@ -1,0 +1,29 @@
+#!/bin/sh
+# xrandr --output DP-2.8 --off --output DP-2.1 --off --output DP-0 --off --output DP-1 --off --output DP-2 --off --output DP-3 --off --output DP-4 --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-0 --off
+
+
+# gtf 2800 1752 60
+# xrandr --newmode "2800x1752_60.00"  419.46  2800 3016 3328 3856  1752 1753 1756 1813  -HSync +Vsync
+
+# cvt --verbose 2800 1752 60
+# xrandr --newmode "2800x1752_60.00"  418.00  2800 3016 3320 3840  1752 1755 1765 1815 -hsync +vsync
+
+# xrandr --addmode HDMI-0 2800x1752_60.00
+# xrandr --output HDMI-0 --mode 2800x1752_60.00 --right-of DP-2.1
+
+# #!/bin/bash
+W=2800
+H=1752
+O=HDMI-0
+if [ "$1" == "create" ]; then
+    gtf $W $H 60 | sed '3q;d' | sed 's/Modeline//g' | xargs xrandr --newmode
+    # sed: get third line, delete 'Modeline', get first word, remove first and last characters
+    gtf $W $H 60 | sed '3q;d' | sed 's/Modeline//g' | awk '{print $1;}' | sed 's/^.\(.*\).$/\1/' | xargs xrandr --addmode $O
+    gtf $W $H 60 | sed '3q;d' | sed 's/Modeline//g' | awk '{print $1;}' | sed 's/^.\(.*\).$/\1/' | xargs xrandr --output $O --left-of LVDS1 --mode
+elif [ "$1" == "on" ]; then
+    x11vnc -listen 192.168.0.10 -clip ${W}x${H}+0+0
+    # For use in Wi-Fi LAN.
+    #x11vnc -clip ${W}x${H}+0+0 #**WARNING** Unencrypted stream. VNC accessible without password through port 5900 in all internet interfaces.
+else
+    echo "missing argument: [create | on]"
+fi

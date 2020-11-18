@@ -7,6 +7,7 @@ profile_file=$HOME/.profile
 source $profile_file
 source /home/vik/.config/broot/launcher/bash/br
 
-export PATH="$HOME/.cargo/bin:$PATH"
+# export PATH="$HOME/.cargo/bin:$PATH"
+# export PATH="$HOME/go/bin:$PATH"
 
 

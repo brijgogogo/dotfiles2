@@ -28,6 +28,8 @@ set noswapfile
 set nobackup
 set nowritebackup
 
+set autowrite " automatically writes if you call :make, etc.
+
 " Set to auto read when a file is changed from the outside
 set autoread
 au FocusGained,BufEnter * checktime
@@ -99,6 +101,8 @@ call minpac#add('tpope/vim-abolish')
 call minpac#add('sonph/onehalf', {'subdir' : 'vim'})
 call minpac#add('arcticicestudio/nord-vim')
 call minpac#add('dracula/vim')
+call minpac#add('fatih/molokai')
+
 
 call minpac#add('ryanoasis/vim-devicons')
 
@@ -119,11 +123,13 @@ call minpac#add('tpope/vim-commentary') " code commenter
 call minpac#add('tpope/vim-surround')
 " call minpac#add('dense-analysis/ale')
 " call minpac#add('neoclide/coc.nvim', { 'branch' : 'release' })
-" call minpac#add('fatih/vim-go')
+call minpac#add('fatih/vim-go', { 'do' : 'GoInstallBinaries' })
 " call minpac#add('diepm/vim-rest-console')
 " call minpac#add('aquach/vim-http-client')
 call minpac#add('sgur/vim-editorconfig') " vim script based editor-config support
 call minpac#add('neovim/nvim-lspconfig') " temp: neovim lsp client
+call minpac#add('AndrewRadev/splitjoin.vim')
+call minpac#add('SirVer/ultisnips')
 
 command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update('', {'do': 'call minpac#status()'})
 command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
@@ -133,7 +139,7 @@ command! PackStatus packadd minpac | source $MYVIMRC | call minpac#status()
 " :help mapping
 nnoremap <leader>ev :tabedit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<CR>
-nnoremap <leader>ip :source $MYVIMRC<cr>:PackUpdate<cr>
+" nnoremap <leader>ip :source $MYVIMRC<cr>:PackUpdate<cr>
 nnoremap <leader>eb :tabedit ~/.bashrc<cr>
 nnoremap <leader>et :tabedit ~/docs/cloud/dropbox_b1/Apps/Simpletask/todo.txt<cr>
 
@@ -143,7 +149,9 @@ set termguicolors " enables true color
 " set background=dark
 " set t_Co=256
 colorscheme onehalfdark " nord onehalflight
-
+" let g:rehash256 = 1
+" let g:molokai_original = 1
+" colorscheme molokai
 
 " tabs
 for i in range(1, 9)
@@ -165,18 +173,22 @@ nnoremap <leader>p "+p
 " FZF
 let g:fzf_prefer_tmux = 1
 nnoremap <C-p> :<C-u>FZF<CR>
-nnoremap ; :Buffers<CR>
+nnoremap <leader>; :Buffers<CR>
 nnoremap <leader>h :History<CR>
 " C-T : new tab
 " C-X : new split
 " C-V : new vertical split
 " FZF - Tab to select multiple files, Alt-A to select all. Enter will populate
+"
+
 " the quickfix list (navigate using :cnext/prev of cn/cp)
 map <C-j> :cn<cr>
 map <C-k> :cp<cr>
+map <leader>q :cclose<cr>
+map <leader>Q :copen<cr>
+
+
 map <C-f> :Rg<cr>
-map <leader>Q :cclose<cr>
-map <leader>q :copen<cr>
 
 command! BufOnly execute '%bd|e#|bd#'
 
@@ -352,10 +364,6 @@ set statusline+=%{ObsessionStatus()} " adds vim-obsession indicator if in sessio
 
 
 
-" disable vim-go :GoDef short cut (gd)
-" this is handled by LanguageClient [LC]
-let g:go_def_mapping_enabled = 0
-
 " show hidden characters
 set listchars=tab:→\ ,eol:¬,trail:.
 
@@ -422,9 +430,9 @@ let g:startify_lists = [
 
 
 " vim sessions
-execute "nnoremap \<leader>ss :mksession! " . my_vim_session_dir
+execute "nnoremap \<leader>ms :mksession! " . my_vim_session_dir
 execute "nnoremap \<leader>os :source " . my_vim_session_dir
-execute "nnoremap \<leader>rs :!rm " . my_vim_session_dir
+execute "nnoremap \<leader>xs :!rm " . my_vim_session_dir
 
 
 " https://gist.github.com/romainl/047aca21e338df7ccf771f96858edb86
@@ -521,4 +529,62 @@ imap <F3> a<C-R>=strftime("%Y-%m-%d %a %I:%M %P")<CR>
 nmap <leader>- <Plug>VimwikiRemoveHeaderLevel
 " start with dot files hidden
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
+
+""""""""""""""""""""""""
+"""" vim-go """"""""""""
+""""""""""""""""""""""""
+let g:go_list_type = "quickfix" " use quickfox always
+autocmd FileType go nmap <leader>r <Plug>(go-run)
+
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+
+autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+" autocmd FileType go nmap <leader>b <Plug>(go-build)
+" autocmd FileType go nmap <leader>t <Plug>(go-test)
+
+let g:go_fmt_command = "goimports"
+let g:go_fmt_fail_silently = 1
+let g:go_highlight_types = 1
+" let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+" let g:go_highlight_function_calls = 1
+" let g:go_highlight_operators = 1
+" let g:go_highlight_extra_types = 1
+" let g:go_highlight_build_constraints = 1
+" let g:go_highlight_generate_tags = 1
+" :help go-settings
+
+" by default Vim shows 8 spaces for a single tab
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=2 shiftwidth=2
+
+
+" disable vim-go :GoDef short cut (gd)
+" this is handled by LanguageClient [LC]
+" let g:go_def_mapping_enabled = 0
+
+autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+
+" autocmd FileType go nmap <Leader>i <Plug>(go-info)
+let g:go_auto_type_info = 1
+set updatetime=100
+" let g:go_auto_sameids = 1
+
+""""""""""""""""""""""""
+""""" UltiSnip """""""""
+""""""""""""""""""""""""
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
 
