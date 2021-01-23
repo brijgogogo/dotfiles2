@@ -1,0 +1,1 @@
+use chown to make user owner recursively of .config and other required dirs

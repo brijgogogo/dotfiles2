@@ -1,0 +1,97 @@
+{
+    "workbench.colorTheme": "Community Material Theme",
+    "vim.leader": ",",
+    "vim.hlsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.easymotion": true,
+    "vim.incsearch": true,
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<leader>",
+                "w"
+            ],
+            "commands": [
+                "workbench.action.splitEditor"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "t"
+            ],
+            "commands": [
+                "workbench.action.toggleSidebarVisibility"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "f"
+            ],
+            "commands": [
+                "revealInExplorer"
+            ],
+        },
+        {
+            "before": [
+                "<leader>",
+                "r",
+                "f"
+            ],
+            "commands": [
+                "renameFile"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "r",
+                "e"
+            ],
+            "commands": [
+                "editor.action.rename"
+            ]
+        }
+        {
+            "before": [
+                "<leader>",
+                "<space>"
+            ],
+            "commands": [
+                ":nohl"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "c"
+            ],
+            "commands": [
+                "editor.action.commentLine",
+            ],
+        },
+        {
+            "before": [
+                "<leader>",
+                "f",
+                "d"
+            ],
+            "commands": [
+                "editor.action.formatDocument",
+            ],
+        }
+    ],
+    "vim.visualModeKeyBindings": [
+        {
+            "before": [
+                "<leader>",
+                "c"
+            ],
+            "commands": [
+                "editor.action.commentLine",
+                "extension.vim_escape"
+            ],
+        }
+    ]
+}
