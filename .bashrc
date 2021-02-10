@@ -15,7 +15,8 @@ fi
 # vi mode in bash
 set -o vi
 
-RED="\[$(tput setaf 1)\]" GREEN="\[$(tput setaf 2)\]"
+RED="\[$(tput setaf 1)\]"
+GREEN="\[$(tput setaf 2)\]"
 YELLOW="\[$(tput setaf 3)\]"
 PURPLE="\[$(tput setaf 4)\]"
 PINK="\[$(tput setaf 5)\]"
@@ -116,3 +117,6 @@ PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 # source /home/vik/.config/broot/launcher/bash/br
 # export PATH="$HOME/.cargo/bin:$PATH"
+
+source /home/vik/.config/broot/launcher/bash/br
+source "$HOME/.cargo/env"

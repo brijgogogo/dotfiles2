@@ -81,7 +81,11 @@ call minpac#add('radenling/vim-dispatch-neovim')
 " call minpac#add('leafgarland/typescript-vim')
 
 call minpac#add('vimwiki/vimwiki')
-call minpac#add('iamcco/markdown-preview.nvim', {'do': 'call mkdp#util#install()'})
+" call minpac#add('iamcco/markdown-preview.nvim', {'do': 'call mkdp#util#install()'})
+call minpac#add('godlygeek/tabular')
+call minpac#add('plasticboy/vim-markdown')
+call minpac#add('junegunn/limelight.vim')
+call minpac#add('junegunn/goyo.vim')
 
 call minpac#add('dbeniamine/todo.txt-vim')
 
@@ -127,7 +131,7 @@ call minpac#add('fatih/vim-go', { 'do' : 'GoInstallBinaries' })
 " call minpac#add('diepm/vim-rest-console')
 " call minpac#add('aquach/vim-http-client')
 call minpac#add('sgur/vim-editorconfig') " vim script based editor-config support
-call minpac#add('neovim/nvim-lspconfig') " temp: neovim lsp client
+" call minpac#add('neovim/nvim-lspconfig') " temp: neovim lsp client
 call minpac#add('AndrewRadev/splitjoin.vim')
 call minpac#add('SirVer/ultisnips')
 

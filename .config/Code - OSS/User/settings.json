@@ -1,11 +1,18 @@
 {
-    "workbench.colorTheme": "Community Material Theme",
+    "editor.autoClosingBrackets": "never",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.autoClosingQuotes": "never",
+    "workbench.colorTheme": "Dracula",
     "vim.leader": ",",
     "vim.hlsearch": true,
     "vim.useSystemClipboard": true,
     "vim.easymotion": true,
     "vim.incsearch": true,
     "vim.normalModeKeyBindingsNonRecursive": [
+      {
+        "before": [ "%" ],
+        "commands": ["editor.emmet.action.matchTag"]
+      },
         {
             "before": [
                 "<leader>",

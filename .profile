@@ -2,7 +2,6 @@
 
 # Paths
 export PATH="$HOME/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 # window manager
 export MY_WM="dwm"
@@ -46,6 +45,7 @@ source ~/bin/buku-completion.bash
 # shopt -s autocd # auto cd when entering just a path
 
 
+# source "$HOME/.cargo/env"
 
 # Start graphical server on tty1 if not already running.
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x Xorg >/dev/null && exec startx
