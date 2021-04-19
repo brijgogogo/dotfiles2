@@ -1,4 +1,6 @@
-amixer set 'Master' 10%+
-vol=`amixer get Master | tail -n1 | sed -r "s/.*\[(.*)%\].*/\1/"`
-msg="volume - $vol"
-notify-send "$msg"
+# amixer set 'Master' 10%+
+# amixer -q set Master 5%+ unmute
+# vol=`amixer get Master | tail -n1 | sed -r "s/.*\[(.*)%\].*/\1/"`
+# msg="volume - $vol"
+# notify-send "$msg"
+audio up

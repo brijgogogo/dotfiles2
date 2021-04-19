@@ -80,14 +80,13 @@ call minpac#add('tpope/vim-dispatch')
 call minpac#add('radenling/vim-dispatch-neovim')
 " call minpac#add('leafgarland/typescript-vim')
 
-call minpac#add('vimwiki/vimwiki')
 " call minpac#add('iamcco/markdown-preview.nvim', {'do': 'call mkdp#util#install()'})
-call minpac#add('godlygeek/tabular')
+" call minpac#add('godlygeek/tabular')
 call minpac#add('plasticboy/vim-markdown')
-call minpac#add('junegunn/limelight.vim')
-call minpac#add('junegunn/goyo.vim')
+" call minpac#add('junegunn/limelight.vim')
+" call minpac#add('junegunn/goyo.vim')
 
-call minpac#add('dbeniamine/todo.txt-vim')
+" call minpac#add('dbeniamine/todo.txt-vim')
 
 call minpac#add('moll/vim-node')
 call minpac#add('tpope/vim-vinegar') " netrw extensions
@@ -144,6 +143,8 @@ command! PackStatus packadd minpac | source $MYVIMRC | call minpac#status()
 nnoremap <leader>ev :tabedit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 " nnoremap <leader>ip :source $MYVIMRC<cr>:PackUpdate<cr>
+nnoremap <leader>ww :edit ~/docs/wiki/index.md<cr>:cd %:p:h<cr>
+nnoremap <leader>wt :tabedit ~/docs/wiki/index.md<cr>:cd %:p:h<cr>
 nnoremap <leader>eb :tabedit ~/.bashrc<cr>
 nnoremap <leader>et :tabedit ~/docs/cloud/dropbox_b1/Apps/Simpletask/todo.txt<cr>
 
@@ -590,5 +591,12 @@ set updatetime=100
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+"" vim-markdown
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_autowrite = 1
+let g:vim_markdown_auto_insert_bullets = 0
+let g:vim_markdown_new_list_item_indent = 0
+let g:vim_markdown_edit_url_in = 'tab'
 
 

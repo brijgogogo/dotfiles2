@@ -1,6 +1,7 @@
 # code
 https://codeblog.jonskeet.uk/feed/ "code"
 http://blog.stevensanderson.com/feed/ "code"
+https://feeds.feedburner.com/LosTechies "code"
 
 https://www.reddit.com/r/vim/.rss
 
@@ -10,6 +11,7 @@ https://www.brandonsmith.ninja/ "programming"
 https://josephg.com/blog/rss/ "programming"
 https://martinfowler.com/feed.atom "programming"
 https://arslan.io/posts/index.xml "programming"
+https://catalins.tech/rss.xml "programming"
 
 # Linux
 https://quickfix.es/feed/ "linux"

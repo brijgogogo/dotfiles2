@@ -1,5 +1,7 @@
 #!/bin/bash
 intern=DP-4
+# extern1=DP-0.8
+# extern2=DP-0.1
 extern1=DP-2.8
 extern2=DP-2.1
 

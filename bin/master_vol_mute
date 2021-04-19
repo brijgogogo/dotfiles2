@@ -1,0 +1,5 @@
+amixer set 'Master' 200%-
+# amixer -q set Master mute
+vol=`amixer get Master | tail -n1 | sed -r "s/.*\[(.*)%\].*/\1/"`
+msg="volume muted - $vol"
+notify-send "$msg"

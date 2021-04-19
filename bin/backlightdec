@@ -1,0 +1,4 @@
+# xbacklight -dec 15
+# msg=`xbacklight | cut -c 1-2`
+# notify-send "backlight $msg"
+brightness down

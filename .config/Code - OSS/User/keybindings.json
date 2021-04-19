@@ -1,5 +1,9 @@
 // Place your key bindings in this file to override the defaults
 [
+  {
+    "key":"%", 
+    "command": "editor.emmet.action.matchTag"
+  },
     // moving around in split views
     {
         "key": "ctrl+h",
