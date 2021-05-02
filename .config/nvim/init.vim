@@ -6,9 +6,10 @@ set hidden " allows to have change not written in hidden buffers
 set expandtab " pressing <TAB> inserts softtabstop amount of space characters
 set shiftwidth=2 " tab to spaces on press of >>, << or ==
 set softtabstop=2 " tab to spaces press of <TAB> or <BS>
-" set autoindent " copies the indentation from the previous line, when starting a new line
+set autoindent " copies the indentation from the previous line, when starting a new line
 " set smartindent " automatically inserts one extra level of indentation in some cases (like C-like files)
 " https://vim.fandom.com/wiki/Indenting_source_code
+set textwidth=0
 
 set scrolloff=3
 set sidescrolloff=5
@@ -599,4 +600,4 @@ let g:vim_markdown_auto_insert_bullets = 0
 let g:vim_markdown_new_list_item_indent = 0
 let g:vim_markdown_edit_url_in = 'tab'
 
-
+set conceallevel=2
