@@ -116,5 +116,57 @@ PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 # source /home/vik/.config/broot/launcher/bash/br
 # export PATH="$HOME/.cargo/bin:$PATH"
 
-source /home/vik/.config/broot/launcher/bash/br
-source "$HOME/.cargo/env"
+# source /home/vik/.config/broot/launcher/bash/br
+#source "$HOME/.cargo/env"
+
+
+
+# Paths
+export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
+# window manager
+export MY_WM="dwm"
+
+# Default programs:
+export EDITOR="nvim"
+export VISUAL='nvim'
+export TERMINAL="alacritty"
+export BROWSER="firefox"
+export READER="zathura"
+export FILE="nnn"
+export STATUSBAR="${MY_WM}blocks"
+
+
+
+# nnn
+export NNN_BMS='d:~/docs/;D:~/Downloads/;c:~/docs/cloud/;s:~/docs/screenshots/;w:~/docs/work/' ## bookmarks
+export NNN_USE_EDITOR=1                                 # use the $EDITOR when opening text files
+export NNN_PLUG='o:fzopen;p:mocplay;d:diffs;m:nmount;n:notes;v:imgviu;t:imgthumb' # nnn plugins
+
+# Set up Node Version Manager
+source /usr/share/nvm/init-nvm.sh
+
+# FZF
+# export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --height 40%"
+export FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
+# export FZF_DEFAULT_COMMAND='rg --files --follow --hidden --ignore'
+export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git --color=always'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+
+source /usr/share/fzf/key-bindings.bash
+source /usr/share/fzf/completion.bash
+
+# bash completion
+source /usr/share/bash-completion/bash_completion
+# bash history completion
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
+
+source ~/bin/buku-completion.bash
+
+# export HISTCONTROL=ignoredups # ignore duplicates in bash history
+# shopt -s autocd # auto cd when entering just a path
+
+
+# source "$HOME/.cargo/env"

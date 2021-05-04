@@ -86,6 +86,7 @@ call minpac#add('radenling/vim-dispatch-neovim')
 call minpac#add('plasticboy/vim-markdown')
 " call minpac#add('junegunn/limelight.vim')
 " call minpac#add('junegunn/goyo.vim')
+call minpac#add('fcpg/vim-waikiki')
 
 " call minpac#add('dbeniamine/todo.txt-vim')
 
@@ -144,8 +145,8 @@ command! PackStatus packadd minpac | source $MYVIMRC | call minpac#status()
 nnoremap <leader>ev :tabedit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 " nnoremap <leader>ip :source $MYVIMRC<cr>:PackUpdate<cr>
-nnoremap <leader>ww :edit ~/docs/wiki/index.md<cr>:cd %:p:h<cr>
-nnoremap <leader>wt :tabedit ~/docs/wiki/index.md<cr>:cd %:p:h<cr>
+nnoremap <leader>ww :edit /media/d1/docs/wiki/index.md<cr>:cd %:p:h<cr>
+nnoremap <leader>wt :tabedit /media/d1/docs/wiki/index.md<cr>:cd %:p:h<cr>
 nnoremap <leader>eb :tabedit ~/.bashrc<cr>
 nnoremap <leader>et :tabedit ~/docs/cloud/dropbox_b1/Apps/Simpletask/todo.txt<cr>
 
@@ -601,3 +602,13 @@ let g:vim_markdown_new_list_item_indent = 0
 let g:vim_markdown_edit_url_in = 'tab'
 
 set conceallevel=2
+
+let g:waikiki_wiki_roots = ['/media/d1/docs/wiki']
+let g:waikiki_wiki_patterns = ['/wiki/']
+let g:waikiki_default_maps  = 1
+
+" wiki shortcuts
+autocmd FileType markdown nmap  <Tab>  <Plug>(waikikiNextLink)
+autocmd FileType markdown nmap  <S-Tab>  <Plug>(waikikiPrevLink)
+autocmd FileType markdown nmap  <cr>  <Plug>(waikikiFollowLink)
+

@@ -43,9 +43,9 @@ myFocusColor :: String
 myFocusColor  = "#46d9ff"   -- Border color of focused windows
 
 -- Color of current window title in xmobar.
-xmobarTitleColor = "#FFB6B0"
+xmobarTitleColor = "#3d84b8"
 -- Color of current workspace in xmobar.
-xmobarCurrentWorkspaceColor = "#CEFFAC"
+xmobarCurrentWorkspaceColor = "#8ab6d6"
 
 windowCount :: X (Maybe String)
 windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
@@ -56,7 +56,8 @@ myWorkspaces = [" dev ", " www ", " sys ", " doc ", " vbox ", " chat ", " mus ",
 myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..] -- (,) == \x y -> (x,y)
 
 -- layout hook
-myLayoutHook = avoidStruts $ layoutHook defaultConfig
+-- myLayoutHook = avoidStruts $ layoutHook defaultConfig
+myLayoutHook = avoidStruts $ layoutHook def
 
 myKeys :: [(String, X ())]
 myKeys =
@@ -81,7 +82,7 @@ main :: IO ()
 main = do
   xmproc <- spawnPipe "xmobar ~/.config/xmobar/xmobarrc"
   --xmonad $ ewmh def
-  xmonad $ docks defaultConfig
+  xmonad $ docks def
     { terminal    = myTerminal
     , modMask     = myModMask
     , workspaces = myWorkspaces
@@ -89,7 +90,7 @@ main = do
     , normalBorderColor = myNormColor
     , focusedBorderColor = myFocusColor
     , layoutHook = myLayoutHook
-    , manageHook = manageDocks <+> manageHook defaultConfig
+    , manageHook = manageDocks <+> manageHook def
     , logHook = dynamicLogWithPP $ xmobarPP {
             ppOutput = hPutStrLn xmproc
           , ppTitle = xmobarColor xmobarTitleColor "" . shorten 100
