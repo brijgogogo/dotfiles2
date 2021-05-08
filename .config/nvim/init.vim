@@ -1,5 +1,7 @@
 syntax on "turn syntax highlighting on
+set statusline+=%#Visual#       " highlight group
 set backspace=indent,eol,start " allows backspace
+set statusline+=%#Visual#       " highlight group
 set hidden " allows to have change not written in hidden buffers
 
 " Indentation
@@ -22,14 +24,15 @@ set relativenumber
 " see value of an option
 " :echo &wrap
 
-set nowrap
+" set nowrap
+set wrap
 set linebreak " don't break words when wrapping text
 
 set noswapfile
 set nobackup
 set nowritebackup
 
-set autowrite " automatically writes if you call :make, etc.
+set autowrite " automatically writes if you call :make, :next, etc.
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -39,6 +42,26 @@ au FocusGained,BufEnter * checktime
 " :help undo-persistence
 " set undodir=~/.config/nvim/undodir
 set undofile
+
+" Give more space for displaying messages.
+set cmdheight=2
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+" https://vim.fandom.com/wiki/Avoiding_the_%22Hit_ENTER_to_continue%22_prompts
+
+" :help signs
+" always show the signcolumn
+if has("nvim-0.5.0") || has("patch-8.1.1564")
+  " merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+" set updatetime=100
 
 " show bar on 80th column
 set colorcolumn=80
@@ -65,80 +88,17 @@ set path=.,** " set path to current directory and all subdirectories
 let mapleader=','
 let maplocalleader = "\\" " second leader key, meant to be a prefix for mappings that only take effect for certain file types
 
-
 " set list " show invisible characters \t,\n (use :set list! to turn off)
 
-" git clone minpac in .vim/pack/minpack/opt/
-packadd minpac
 
-call minpac#init()
-call minpac#add('k-takata/minpac',{'type':'opt'}) " package manager
-call minpac#add('tpope/vim-unimpaired')
-call minpac#add('tpope/vim-scriptease', {'type':'opt'})
-call minpac#add('junegunn/fzf.vim')
-" call minpac#add('tpope/vim-projectionist')
-call minpac#add('tpope/vim-dispatch')
-call minpac#add('radenling/vim-dispatch-neovim')
-" call minpac#add('leafgarland/typescript-vim')
+"""""""
+""""""" Plugins
+"""""""
+let plugins_path = expand('~/.config/nvim/plugins.vim')
+if filereadable(plugins_path)
+  exec 'source' plugins_path
+endif
 
-" call minpac#add('iamcco/markdown-preview.nvim', {'do': 'call mkdp#util#install()'})
-" call minpac#add('godlygeek/tabular')
-call minpac#add('plasticboy/vim-markdown')
-" call minpac#add('junegunn/limelight.vim')
-" call minpac#add('junegunn/goyo.vim')
-call minpac#add('fcpg/vim-waikiki')
-
-" call minpac#add('dbeniamine/todo.txt-vim')
-
-call minpac#add('moll/vim-node')
-call minpac#add('tpope/vim-vinegar') " netrw extensions
-call minpac#add('lambdalisue/suda.vim') " sudo read/write
-
-call minpac#add('kshenoy/vim-signature') " shows marks
-
-" sessions
-call minpac#add('mhinz/vim-startify')
-call minpac#add('tpope/vim-obsession')
-
-call minpac#add('tpope/vim-abolish')
-
-" themes
-call minpac#add('sonph/onehalf', {'subdir' : 'vim'})
-call minpac#add('arcticicestudio/nord-vim')
-call minpac#add('dracula/vim')
-call minpac#add('fatih/molokai')
-
-
-call minpac#add('ryanoasis/vim-devicons')
-
-" git
-call minpac#add('tpope/vim-fugitive') " git commands from vim
-call minpac#add('airblade/vim-gitgutter') " show git diff markers
-call minpac#add('rhysd/git-messenger.vim') " see history of line
-" call minpac#add('jreybert/vimagit')
-
-" editing
-call minpac#add('mbbill/undotree')
-
-" programming
-call minpac#add('ap/vim-css-color')
-call minpac#add('mattn/emmet-vim')
-" call minpac#add('preservim/nerdcommenter')
-call minpac#add('tpope/vim-commentary') " code commenter
-call minpac#add('tpope/vim-surround')
-" call minpac#add('dense-analysis/ale')
-" call minpac#add('neoclide/coc.nvim', { 'branch' : 'release' })
-call minpac#add('fatih/vim-go', { 'do' : 'GoInstallBinaries' })
-" call minpac#add('diepm/vim-rest-console')
-" call minpac#add('aquach/vim-http-client')
-call minpac#add('sgur/vim-editorconfig') " vim script based editor-config support
-" call minpac#add('neovim/nvim-lspconfig') " temp: neovim lsp client
-call minpac#add('AndrewRadev/splitjoin.vim')
-call minpac#add('SirVer/ultisnips')
-
-command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update('', {'do': 'call minpac#status()'})
-command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
-command! PackStatus packadd minpac | source $MYVIMRC | call minpac#status()
 
 
 " :help mapping
@@ -152,7 +112,9 @@ nnoremap <leader>et :tabedit ~/docs/cloud/dropbox_b1/Apps/Simpletask/todo.txt<cr
 
 
 " :help termguicolors
-set termguicolors " enables true color
+"if has('termguicolors')
+set termguicolors " enables true color (24-bit colors) instead of 256 colors (8-bit)
+" endif
 " set background=dark
 " set t_Co=256
 colorscheme onehalfdark " nord onehalflight
@@ -177,16 +139,23 @@ nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
 nnoremap <leader>y "+y
 nnoremap <leader>p "+p
 
-" FZF
-let g:fzf_prefer_tmux = 1
-nnoremap <C-p> :<C-u>FZF<CR>
-nnoremap <leader>; :Buffers<CR>
-nnoremap <leader>h :History<CR>
+"""""""""""
+""""""""""" FZF
+"""""""""""
+" let g:fzf_prefer_tmux = 1
+" nnoremap <C-p> :<C-u>FZF<CR>
+" search files under current directory
+nnoremap <C-p> :FZF<CR>
+" search buffers
+" nnoremap <leader>; :Buffers<CR>
+" search history
+" nnoremap <leader>h :History<CR>
 " C-T : new tab
 " C-X : new split
 " C-V : new vertical split
 " FZF - Tab to select multiple files, Alt-A to select all. Enter will populate
 "
+
 
 " the quickfix list (navigate using :cnext/prev of cn/cp)
 map <C-j> :cn<cr>
@@ -240,20 +209,6 @@ if has( 'nvim' ) && executable( 'nvr' )
   let $VISUAL= "nvr -cc split --remote-wait +'set bufhidden=wipe'"
 endif
 
-
-
-" vimwiki
-let wiki1 = {'path':'/home/vik/docs/wiki', 'ext':'.md'}
-let wiki2 = {'path':'/home/vik/docs/cloud/dropbox_b1/vimwiki'}
-let g:vimwiki_list =[wiki1, wiki2]
-nnoremap <leader>wn :lnext<CR>
-nnoremap <leader>wp :lprev<CR>
-nnoremap <leader>w<cr> :VimwikiSplitLink<cr>
-nnoremap <leader>w<cr> :VimwikiTabnewLink<cr>
-
-" search vimwiki with rg+fzf
-command! -bang -nargs=* WikiSearch
-  \ call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'dir': '/home/vik/docs/wiki'}, <bang>0)
 
 "=====[ Search ]=============
 set hlsearch
@@ -335,38 +290,32 @@ let g:currentmode={
        \ 'c'  : 'Command ',
        \}
 
-function! GitStatus()
-  let [a,m,r] = GitGutterGetHunkSummary()
-  return printf('+%d ~%d -%d', a, m, r)
-endfunction
-
 " http://vimdoc.sourceforge.net/htmldoc/options.html#'statusline'
-" %f: file name
-" %F: full file name
-" %y: file type
-" %l : current line number
-" %L : total line numbers
-" %= : everything coming afterwards should be aligned to the right
-" $m : modified flag
 set statusline=
-set statusline+=%#DiffAdd#%{(mode()=='n')?'\ \ NORMAL\ ':''}
-set statusline+=%#DiffChange#%{(mode()=='i')?'\ \ INSERT\ ':''}
-set statusline+=%#DiffDelete#%{(mode()=='r')?'\ \ RPLACE\ ':''}
-set statusline+=%#Cursor#%{(mode()=='v')?'\ \ VISUAL\ ':''}
+set statusline+=%#DiffAdd#%{(mode()=='n')?'\ \ N\ ':''} " NORMAL
+set statusline+=%#DiffChange#%{(mode()=='i')?'\ \ I\ ':''} " INSERT
+set statusline+=%#DiffDelete#%{(mode()=='r')?'\ \ R\ ':''} "RPLACE
+set statusline+=%#Cursor#%{(mode()=='v')?'\ \ V\ ':''} "VISUAL
 " set statusline+=%{toupper(g:currentmode[mode()])}
-set statusline+=%#Visual#       " colour
-set statusline+=%m
-set statusline+=\ %f
-set statusline+=\ %r
-set statusline+=%#CursorLine#     " colour
-set statusline+=\ %y
+" see highlight groups :so $VIMRUNTIME/syntax/hitest.vim
+set statusline+=%#LineNr#       " highlight group
+set statusline+=%m    " modified flag [+], [-]
+" set statusline+=\ %f  " path of file in the buffer
+set statusline+=\ %r  " Readonly flag [RO]
+set statusline+=%#StatusLineNC#       " highlight group
+set statusline+=\ %y  " type of file in buffer [vim]
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
+set statusline+=\[%{&fileformat}\]
+set statusline+=%#LineNr#     " hightlight group
 set statusline+=%{StatuslineGit()}
-" set statusline+=%{GitStatus()} " show added, modified, removed line count
-set statusline+=%=
-set statusline+=%q
+set statusline+=%=     " separation point (left/right)
+set statusline+=%#Visual#       " highlight group
+set statusline+=%q    " [Quickfix List], [Location List], empty
 " set statusline+=%#CursorIM#     " colour
 " set statusline+=%#Cursor#               " colour
-set statusline+=[%l,%c/%L]
+set statusline+=%#LineNr#               " colour
+" set statusline+=[b%n]
+set statusline+=[%l,%c/%L]        " %l line number, %c column number, %L total lines
 set statusline+=%{ObsessionStatus()} " adds vim-obsession indicator if in session
 
 
@@ -537,78 +486,20 @@ nmap <leader>- <Plug>VimwikiRemoveHeaderLevel
 " start with dot files hidden
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 
-""""""""""""""""""""""""
-"""" vim-go """"""""""""
-""""""""""""""""""""""""
-let g:go_list_type = "quickfix" " use quickfox always
-autocmd FileType go nmap <leader>r <Plug>(go-run)
-
-" run :GoBuild or :GoTestCompile based on the go file
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#test#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
-endfunction
-
-autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
-" autocmd FileType go nmap <leader>b <Plug>(go-build)
-" autocmd FileType go nmap <leader>t <Plug>(go-test)
-
-let g:go_fmt_command = "goimports"
-let g:go_fmt_fail_silently = 1
-let g:go_highlight_types = 1
-" let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-" let g:go_highlight_function_calls = 1
-" let g:go_highlight_operators = 1
-" let g:go_highlight_extra_types = 1
-" let g:go_highlight_build_constraints = 1
-" let g:go_highlight_generate_tags = 1
-" :help go-settings
-
-" by default Vim shows 8 spaces for a single tab
-autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=2 shiftwidth=2
-
-
-" disable vim-go :GoDef short cut (gd)
-" this is handled by LanguageClient [LC]
-" let g:go_def_mapping_enabled = 0
-
-autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
-autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
-autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
-autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
-
-" autocmd FileType go nmap <Leader>i <Plug>(go-info)
-let g:go_auto_type_info = 1
-set updatetime=100
-" let g:go_auto_sameids = 1
 
 """"""""""""""""""""""""
 """"" UltiSnip """""""""
 """"""""""""""""""""""""
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsExpandTrigger="<leader>s"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+" <s-tab>
 
-"" vim-markdown
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_autowrite = 1
-let g:vim_markdown_auto_insert_bullets = 0
-let g:vim_markdown_new_list_item_indent = 0
-let g:vim_markdown_edit_url_in = 'tab'
 
-set conceallevel=2
+" check key mapping
+" :verbose imap <tab>
 
-let g:waikiki_wiki_roots = ['/media/d1/docs/wiki']
-let g:waikiki_wiki_patterns = ['/wiki/']
-let g:waikiki_default_maps  = 1
-
-" wiki shortcuts
-autocmd FileType markdown nmap  <Tab>  <Plug>(waikikiNextLink)
-autocmd FileType markdown nmap  <S-Tab>  <Plug>(waikikiPrevLink)
-autocmd FileType markdown nmap  <cr>  <Plug>(waikikiFollowLink)
-
+" vimrc files
+for s:path in split(glob('~/.config/nvim/vimrc/*.vim'), "\n")
+  exe 'source ' . s:path
+endfor

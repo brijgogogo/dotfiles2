@@ -70,12 +70,12 @@ fb() {
 }
 
 # fd - cd to selected directory
-fd() {
-  local dir
-  dir=$(find ${1:-.} -path '*/\.*' -prune \
-                  -o -type d -print 2> /dev/null | fzf +m) &&
-  cd "$dir"
-}
+# fd() {
+#   local dir
+#   dir=$(find ${1:-.} -path '*/\.*' -prune \
+#                   -o -type d -print 2> /dev/null | fzf +m) &&
+#   cd "$dir"
+# }
 
 # fkill - kill process
 fkill() {
@@ -148,9 +148,13 @@ source /usr/share/nvm/init-nvm.sh
 
 # FZF
 # export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --height 40%"
+# options to always apply on fzf in tty
 export FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
 # export FZF_DEFAULT_COMMAND='rg --files --follow --hidden --ignore'
-export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git --color=always'
+# use fd as the default source for fzf instead of find
+export FZF_DEFAULT_COMMAND='fd --type f --follow --hidden --exclude .git'
+# Ctrl-T on terminal searches directory
+# export FZF_CTRL_T_COMMAND='fd --type d --follow --hidden --exclude .git --color=always'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 

@@ -22,7 +22,7 @@ import XMonad.Util.Run (runProcessWithInput, safeSpawn, spawnPipe)
 import XMonad.Util.SpawnOnce
 
 myFont :: String
-myFont = "xft:SauceCodePro Nerd Font Mono:regular:size=9:antialias=true:hinting=true"
+myFont = "xft:Liberation Mono:regular:size=9:antialias=true:hinting=true"
 
 myModMask :: KeyMask
 myModMask = mod4Mask        -- Sets modkey to super/windows key
@@ -51,7 +51,7 @@ windowCount :: X (Maybe String)
 windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
 
 -- myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
-myWorkspaces = [" dev ", " www ", " sys ", " doc ", " vbox ", " chat ", " mus ", " vid ", " gfx "]
+myWorkspaces = [" 1:www ", " 2:ter ", " 3:sys ", " 4:doc ", " 5:code ", " 6:chat ", " 7:mus ", " 8:book ", " 9:cal "]
 
 myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..] -- (,) == \x y -> (x,y)
 
