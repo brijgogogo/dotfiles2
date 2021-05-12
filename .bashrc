@@ -23,7 +23,9 @@ GRAY="\[$(tput setaf 7)\]"
 RESET="\[$(tput sgr0)\]"
 
 # prompt
-export PS1="${BLUE}\u${GRAY}@${YELLOW}\h${GREEN}:${PURPLE}\W${RESET}$ "
+# export PS1="${BLUE}\u${GRAY}@${YELLOW}\h${GREEN}:${PURPLE}\W${RESET}$ "
+# export PS1="┌──\u@\h[\w]\n└─╼ "
+export PS1="┌──${BLUE}\u${GRAY}@${YELLOW}\h${GREEN}:${PURPLE}\W\n└─╼ ${RESET}$ "
 
 # cd on quit of nnn
 n ()
@@ -162,7 +164,10 @@ source /usr/share/fzf/key-bindings.bash
 source /usr/share/fzf/completion.bash
 
 # bash completion
-source /usr/share/bash-completion/bash_completion
+if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+fi
+
 # bash history completion
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'

@@ -48,6 +48,7 @@ call minpac#add('ryanoasis/vim-devicons')
 call minpac#add('tpope/vim-fugitive') " git commands from vim
 call minpac#add('airblade/vim-gitgutter') " show git diff markers
 call minpac#add('rhysd/git-messenger.vim') " see history of line
+" call minpac#add('junegunn/gv.vim') " see history of line
 " call minpac#add('jreybert/vimagit')
 
 " editing

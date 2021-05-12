@@ -52,10 +52,10 @@ set shortmess+=c
 " :help signs
 " always show the signcolumn
 if has("nvim-0.5.0") || has("patch-8.1.1564")
-  " merge signcolumn and number column into one
-  set signcolumn=number
+    " merge signcolumn and number column into one
+    set signcolumn=number
 else
-  set signcolumn=yes
+    set signcolumn=yes
 endif
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
@@ -75,7 +75,7 @@ let $RTP=split(&runtimepath, ',')[0]
 let $RC="$HOME/.config/nvim/init.vim"
 
 function!PrintRuntimePathValue()
-	echo join(split(&runtimepath,','),"\n")
+          echo join(split(&runtimepath,','),"\n")
 endfunction
 
 command! PrintRTP call PrintRuntimePathValue()
@@ -102,14 +102,22 @@ endif
 
 
 " :help mapping
-nnoremap <leader>ev :tabedit $MYVIMRC<cr>
+nnoremap <leader>ev :edit $MYVIMRC<cr>
+nnoremap <localleader>ev :tabedit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 " nnoremap <leader>ip :source $MYVIMRC<cr>:PackUpdate<cr>
-nnoremap <leader>ww :edit /media/d1/docs/wiki/index.md<cr>:cd %:p:h<cr>
+" nnoremap <leader>ww :edit /media/d1/docs/wiki/index.md<cr>:cd %:p:h<cr>
+nnoremap <leader>ww :call GoToMyWiki()<cr>
+
 nnoremap <leader>wt :tabedit /media/d1/docs/wiki/index.md<cr>:cd %:p:h<cr>
 nnoremap <leader>eb :tabedit ~/.bashrc<cr>
 nnoremap <leader>et :tabedit ~/docs/cloud/dropbox_b1/Apps/Simpletask/todo.txt<cr>
 
+
+function! GoToMyWiki()
+  exec 'edit /media/d1/docs/wiki/index.md'
+  exec 'cd %:p:h'
+endfunction
 
 " :help termguicolors
 "if has('termguicolors')
@@ -136,8 +144,16 @@ nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
 
 
 " system clipboard
-nnoremap <leader>y "+y
-nnoremap <leader>p "+p
+" nnoremap <leader>y "+y
+" nnoremap <leader>p "+p
+
+" copy full path of current file
+nmap <leader>y% :let @+ = expand("%:p")<cr>
+" +: unnamedplus as clipboard
+" ": unnamed register as clipboard
+" % : file name
+" %:p : full file path
+
 
 """""""""""
 """"""""""" FZF
@@ -164,7 +180,8 @@ map <leader>q :cclose<cr>
 map <leader>Q :copen<cr>
 
 
-map <C-f> :Rg<cr>
+"map <C-f> :Rg<cr>
+nnoremap <silent> ; :Rg<cr>
 
 command! BufOnly execute '%bd|e#|bd#'
 
@@ -188,7 +205,9 @@ let g:nnn#action = {
       \ '<c-v>': 'vsplit' }
 
 
-""""""" terminal mode """""""
+"""""""
+""""""" terminal mode
+"""""""
 if has('nvim' )
   " tnoremap <Esc> <C-\><C-n> " Esc to go to Normal mode from Terminal mode
   " tnoremap <C-v><Esc> <Esc> " To pass Esc to terminal
@@ -210,7 +229,9 @@ if has( 'nvim' ) && executable( 'nvr' )
 endif
 
 
-"=====[ Search ]=============
+"=====[ Search []=============](]=============.md)
+" search highlight
+hi Search cterm=NONE guifg=#ffffff guibg=#0096c7
 set hlsearch
 set incsearch
 set ignorecase
@@ -222,13 +243,14 @@ nnoremap <leader>/ :g//#<Left><Left>
 nnoremap <silent> n n:call HLNext(0.4)<cr>
 nnoremap <silent> N N:call HLNext(0.4)<cr>
 
-"=====[ Highlight the match in red ]=============
+"=====[ Highlight the match ]=============
 function! HLNext (blinktime)
-  highlight WhiteOnRed ctermfg=white ctermbg=red guifg=#ffffff guibg=#ff0000
+  " highlight WhiteOnRed ctermfg=white ctermbg=red guifg=#ffffff guibg=#ff0000
+  highlight MyHighlight ctermfg=white ctermbg=red guifg=#ffffff guibg=#e9c46a
   let [bufnum, lnum, col, off] = getpos('.')
   let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
   let target_pat = '\c\%#'.@/
-  let ring = matchadd('WhiteOnRed', target_pat, 101)
+  let ring = matchadd('MyHighlight', target_pat, 101)
   redraw
   exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
   call matchdelete(ring)
@@ -261,6 +283,8 @@ iabbrev tehn then
 :iabbrev @@ brijgogogo1@gmail.com
 :iabbrev ccopy Copyright 2019 Brij Sharma, all rights reserved.
 :iabbrev ssig <cr>Thanks<cr>Brij
+abbr funciton function
+abbr teh the
 
 " set iskeyword?
 " help isfname
@@ -325,6 +349,8 @@ set listchars=tab:→\ ,eol:¬,trail:.
 
 " remove all trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
+" remove extra whitespace
+" nmap <leader><space> :%s/\s\+$<cr>
 
 
 function! GotoJump()
@@ -480,12 +506,12 @@ nmap <F3> a<C-R>=strftime("%Y-%m-%d %a %I:%M %P")<CR><Esc>
 imap <F3> a<C-R>=strftime("%Y-%m-%d %a %I:%M %P")<CR>
 
 " netrw
-" Vim-vinegar key - clashes with vimwiki
-" nmap <Nop> <Plug>VimwikiRemoveHeaderLevel
-nmap <leader>- <Plug>VimwikiRemoveHeaderLevel
 " start with dot files hidden
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 
+
+" highlight conflicts
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 """"""""""""""""""""""""
 """"" UltiSnip """""""""
@@ -503,3 +529,28 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 for s:path in split(glob('~/.config/nvim/vimrc/*.vim'), "\n")
   exe 'source ' . s:path
 endfor
+
+" Splits
+set splitright " vsplit to the right
+set splitbelow " split below
+
+"""""""""
+""""""""" spell check
+"""""""""
+" toggle spellcheck
+noremap <leader>sp :set spell!<CR>
+" autocmd FileType markdown setlocal spell
+" set spell
+" set nospell
+" :help spell
+set spellfile=~/.config/nvim/spell/en.utf-8.add
+" ]s, [s: next/prev misspelled word
+" zg : add word under cursor to spellfile
+" z= : see suggestions
+" spell check highlight
+" hi SpellBad gui=undercurl guibg=#e07a5f guifg=#001219
+hi SpellBad gui=undercurl guifg=#8d99ae
+" SpellLocal, SpellRare, SpellCap
+
+
+
