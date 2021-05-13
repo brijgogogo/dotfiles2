@@ -1,21 +1,27 @@
 -- https://wiki.archlinux.org/title/Xmobar
+-- https://github.com/jaor/xmobar/blob/master/doc/quick-start.org
 Config {
        -- font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
-       font = "xft:Liberation Mono:regular:size=9:antialias=true:hinting=true"
+       -- font = "xft:Liberation Mono:regular:size=9:antialias=true:hinting=true"
+       font = "xft:Inconsolata:regular:size=11:antialias=true:hinting=true"
        -- font = "xft:inconsolatalgc:pixelsize=12:antialias=true"
        , additionalFonts = [ "xft:Mononoki Nerd Font:pixelsize=11:antialias=true:hinting=true"
                            , "xft:Font Awesome 5 Free Solid:pixelsize=12"
                            , "xft:Font Awesome 5 Brands:pixelsize=12"
                            ]
        , borderColor = "#002b36"
-       , border = TopB
+       -- , border = TopB
+       , border = NoBorder
+       -- , border = BottomB
        -- , bgColor = "#222222"
        -- , fgColor = "#888888"
        , bgColor = "#002b36"
        , fgColor = "#657b83"
        , alpha = 255
        -- , position = Top
-       , position =     BottomSize C 100 25 -- centered 100% width
+       , position =     BottomSize C 100 28 -- centered 100% width
+       -- , position = Bottom
+       -- , position = Static { xpos = 0 , ypos = 0, height = 15 }
        -- , textOffset = -1
        -- , iconOffset = -1
        , lowerOnStart = True  -- send to bottom of window stack on start
@@ -31,7 +37,10 @@ Config {
        --ca6702 (red)
        --e3cdc1 (green)
                     -- , Run Cpu ["-L","3","-H","50", "--normal","green","--high","red"] 10
-                    Run Cpu ["-t", "<fn=1>\xf080 </fn> <total>%","-H","50","--high","red"] 20
+                    -- %cpu%
+                    -- Run Cpu ["-t", "<fn=1>\xf080 </fn> <total>%","-H","50","--high","red"] 20
+                    Run MultiCpu ["-t", "<fn=1>\xf080 </fn> <total>%", "-h", "red", "-H", "200"] 50
+                    , Run CpuFreq ["-t", "<cpu0>"] 100
                     -- , Run Memory ["-t","<fn=2>\xf233</fn> <usedratio>%"] 10
                     , Run Memory
                             [ "--template" ,"<fn=2>\xf1fe</fn> <usedratio>%"
@@ -97,5 +106,5 @@ Config {
        , sepChar = "%"  -- delineator between plugin names and straight text
        , alignSep = "}{" -- separator between left-right alignment
        , template = " %StdinReader% }\
-                    \{ %enp7s0%%wlp0s20f3wi% %wlp0s20f3% <fc=#545454>|</fc> %cpu% <fc=#545454>|</fc> %memory% <fc=#545454>|</fc> %battery% <fc=#545454>|</fc> <fc=#168aad>%date%</fc> "
+                    \{ %enp7s0%%wlp0s20f3wi% %wlp0s20f3% <fc=#545454>|</fc> %multicpu% @ %cpufreq% <fc=#545454>|</fc> %memory% <fc=#545454>|</fc> %battery% <fc=#545454>|</fc> <fc=#168aad>%date%</fc> "
        }

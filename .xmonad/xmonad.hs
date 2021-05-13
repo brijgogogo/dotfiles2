@@ -82,12 +82,10 @@ myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 
 myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..] -- (,) == \x y -> (x,y)
 
--- layout hook
--- myLayoutHook = avoidStruts $ layoutHook defaultConfig
--- myLayoutHook = avoidStruts $ layoutHook def
 myLayout = tiled ||| Mirror tiled ||| Full
   where
-    tiled = spacing 5 $ Tall nmaster delta ratio
+    -- tiled = spacing 5 $ Tall nmaster delta ratio
+    tiled = Tall nmaster delta ratio
     nmaster = 1
     ratio = 2/3
     delta = 5/100
@@ -141,16 +139,6 @@ xmobarCreate (S sid) = spawnPipe $ "xmobar ~/.config/xmobar/xmobarrc --screen " 
 xmobarDestroy :: DynamicStatusBarCleanup
 xmobarDestroy = return ()
 
-
-    -- , logHook = dynamicLogWithPP $ xmobarPP {
-    --         ppOutput = hPutStrLn xmproc
-    --       , ppTitle = xmobarColor xmobarTitleColor "" . shorten 100
-    --       , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor "" . wrap "[" "]"
-    --       , ppUrgent  = xmobarColor "#ff69b4" ""
-    --       -- , ppSep = "   "
-    --       , ppSep = xmobarColor "#545454" "" " | " -- before title
-    --   }
-
 -- https://hackage.haskell.org/package/xmonad-contrib-0.16/docs/XMonad-Hooks-DynamicLog.html#v:dynamicLogWithPP
 -- https://github.com/krzysz00/dotfiles/blob/master/xmonad/xmonad.hs
 myPP = xmobarPP {
@@ -190,7 +178,8 @@ defaults =
         dynStatusBarEventHook xmobarCreate xmobarDestroy <+>
         fullscreenEventHook <+>
         handleEventHook def
-    , layoutHook = smartBorders(avoidStruts $ myLayout)
+    -- , layoutHook = smartBorders(avoidStruts $ myLayout)
+    , layoutHook = avoidStruts $ myLayout
     , manageHook = manageDocks <+> myManageHook  <+> manageHook def
     , logHook = do
         logHook def
