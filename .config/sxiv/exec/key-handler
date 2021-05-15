@@ -1,0 +1,29 @@
+#!/bin/sh
+while read file
+do
+        case "$1" in
+        "C-x")
+                rm "$file" &&
+                notify-send "$file deleted"  ;;
+        "C-c")
+          filetype="$(xdg-mime query filetype $file)"
+          if [ "$filetype" = "image/png" ]; then
+            # xclip only copies png image files
+            xclip -selection clipboard -target "$filetype" "$file"
+          else
+            convert "$file" png:- | xclip -selection clipboard -t image/png
+          fi
+          notify-send "$filetype $file copied to clipboard" ;;
+        "C-y")
+                echo -n "$file" | xclip -selection clipboard &&
+                notify-send "$file copied to clipboard" ;;
+        "C-Y")
+                fullpath="$(pwd)/$file"
+                echo -n "$fullpath" | xclip -selection clipboard &&
+                notify-send "$fullpath copied to clipboard" ;;
+        "C-w")
+                nitrogen --save --set-zoom-fill "$file" ;;
+        *)
+            echo "not yet implemented: $1" ;;
+        esac
+done

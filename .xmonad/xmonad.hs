@@ -12,10 +12,14 @@ import XMonad.Hooks.SetWMName (setWMName)
 import XMonad.Prompt.ConfirmPrompt
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.SetWMName
+-- import XMonad.Hooks.Minimize
 
 import XMonad.Layout.Gaps
 import XMonad.Layout.NoBorders (smartBorders, noBorders)
 import XMonad.Layout.Spacing
+import XMonad.Layout.Minimize
+import XMonad.Layout.BoringWindows  as BW
+import XMonad.Actions.Minimize
 
 -- keys
 import Graphics.X11.ExtraTypes.XF86
@@ -82,7 +86,8 @@ myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 
 myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..] -- (,) == \x y -> (x,y)
 
-myLayout = tiled ||| Mirror tiled ||| Full
+-- myLayout = minimize (tiled) ||| Mirror tiled ||| Full
+myLayout = minimize (BW.boringWindows (tiled ||| Mirror tiled ||| Full))
   where
     -- tiled = spacing 5 $ Tall nmaster delta ratio
     tiled = Tall nmaster delta ratio
@@ -121,6 +126,11 @@ myKeys =
   , ("M-w", spawn "alacritty -e 'openwiki'")
   , ("M-v", spawn "alacritty -e 'nvim'")
   , ("M-s", spawn "launch_dmenu")
+  , ("M-m", withFocused minimizeWindow)
+  , ("M-S-m", withLastMinimized maximizeWindowAndFocus)
+  , ("M-j", BW.focusUp) -- skips minimized  windows
+  , ("M-k", BW.focusDown) -- skips minimized windows
+  -- , ("M-m", BW.focusMaster)
 
   -- Switch to single screen mode
   -- , ((modMask .|. mod1Mask, xK_1), spawn "xrandr --output DP1 --off")
@@ -177,6 +187,7 @@ defaults =
         docksEventHook <+>
         dynStatusBarEventHook xmobarCreate xmobarDestroy <+>
         fullscreenEventHook <+>
+        -- minimizeEventHook <+>
         handleEventHook def
     -- , layoutHook = smartBorders(avoidStruts $ myLayout)
     , layoutHook = avoidStruts $ myLayout
