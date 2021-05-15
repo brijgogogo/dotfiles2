@@ -3,6 +3,8 @@ set statusline+=%#Visual#       " highlight group
 set backspace=indent,eol,start " allows backspace
 set statusline+=%#Visual#       " highlight group
 set hidden " allows to have change not written in hidden buffers
+" use block as cursor in insert mode
+" set guicursor=
 
 " Indentation
 set expandtab " pressing <TAB> inserts softtabstop amount of space characters
@@ -181,14 +183,14 @@ map <leader>Q :copen<cr>
 
 
 "map <C-f> :Rg<cr>
-nnoremap <silent> ; :Rg<cr>
+" nnoremap <silent> ; :Rg<cr>
 
 command! BufOnly execute '%bd|e#|bd#'
 
 
 " buffers
-nnoremap <space> :bnext<cr>
-nnoremap <bs> :bprev<cr>
+" nnoremap <space> :bnext<cr>
+" nnoremap <bs> :bprev<cr>
 nnoremap <leader>ls :ls<cr>:b<space>
 
 " nnn

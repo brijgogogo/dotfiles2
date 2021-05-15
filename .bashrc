@@ -3,10 +3,8 @@
 # If not running interactively, don't do anything
 # [[ $- != *i* ]] && return
 
-# aliases
-aliasrc_file=$HOME/.aliasrc
-if [ -f "$aliasrc_file" ]; then
-  source "$aliasrc_file"
+if [ -f "$HOME/.commonrc" ]; then
+  source "$HOME/.commonrc"
 fi
 
 
@@ -26,6 +24,8 @@ RESET="\[$(tput sgr0)\]"
 # export PS1="${BLUE}\u${GRAY}@${YELLOW}\h${GREEN}:${PURPLE}\W${RESET}$ "
 # export PS1="┌──\u@\h[\w]\n└─╼ "
 export PS1="┌──${BLUE}\u${GRAY}@${YELLOW}\h${GREEN}:${PURPLE}\W\n└─╼ ${RESET}$ "
+
+# export PS1="\[\e[38;2;224;108;117m\]\h \[\e[38;2;97;175;239m\]\w \[\e[m\]\$ "
 
 # cd on quit of nnn
 n ()
@@ -79,19 +79,9 @@ fb() {
 #   cd "$dir"
 # }
 
-# fkill - kill process
-fkill() {
-  local pid
-  pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
-
-  if [ "x$pid" != "x" ]
-  then
-    echo $pid | xargs kill -${1:-9}
-  fi
-}
 
 # get to scripts quickly
-se() { find ~/bin -type f | fzf | xargs -r $EDITOR; }
+# se() { find ~/bin -type f | fzf | xargs -r $EDITOR; }
 
 # search history
 # use C-R
@@ -122,44 +112,16 @@ PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 #source "$HOME/.cargo/env"
 
 
-
-# Paths
-export PATH="$HOME/bin:$PATH"
-export PATH="$HOME/go/bin:$PATH"
-# window manager
-export MY_WM="dwm"
-
-# Default programs:
-export EDITOR="nvim"
-export VISUAL='nvim'
-export TERMINAL="alacritty"
-export BROWSER="firefox"
-export READER="zathura"
-export FILE="nnn"
-export STATUSBAR="${MY_WM}blocks"
-
-
-
 # nnn
 export NNN_BMS='d:~/docs/;D:~/Downloads/;c:~/docs/cloud/;s:~/docs/screenshots/;w:~/docs/work/' ## bookmarks
 export NNN_USE_EDITOR=1                                 # use the $EDITOR when opening text files
 export NNN_PLUG='o:fzopen;p:mocplay;d:diffs;m:nmount;n:notes;v:imgviu;t:imgthumb' # nnn plugins
-
-# Set up Node Version Manager
-source /usr/share/nvm/init-nvm.sh
-
-# FZF
-# export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --height 40%"
-# options to always apply on fzf in tty
-export FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
-# export FZF_DEFAULT_COMMAND='rg --files --follow --hidden --ignore'
-# use fd as the default source for fzf instead of find
-export FZF_DEFAULT_COMMAND='fd --type f --follow --hidden --exclude .git'
-# Ctrl-T on terminal searches directory
-# export FZF_CTRL_T_COMMAND='fd --type d --follow --hidden --exclude .git --color=always'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# export NNN_COLORS="2136"
+# BLK="04" CHR="04" DIR="04" EXE="00" REG="00" HARDLINK="00" SYMLINK="06" MISSING="00" ORPHAN="01" FIFO="0F" SOCK="0F" OTHER="02"
+# export NNN_FCOLORS="$BLK$CHR$DIR$EXE$REG$HARDLINK$SYMLINK$MISSING$ORPHAN$FIFO$SOCK$OTHER"
 
 
+# FZF configuration
 source /usr/share/fzf/key-bindings.bash
 source /usr/share/fzf/completion.bash
 
@@ -179,3 +141,4 @@ source ~/bin/buku-completion.bash
 
 
 # source "$HOME/.cargo/env"
+
