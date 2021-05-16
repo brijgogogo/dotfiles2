@@ -11,6 +11,8 @@
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
   #TERM: xterm-256color
+env:
+  TERM: xterm-256color
 
 #window:
   # Window dimensions (changes require restart)
@@ -99,52 +101,18 @@
 # change the `it` value in terminfo when altering this setting.
 #tabspaces: 8
 
-# Font configuration
 font:
-  # Normal (roman) font face
   normal:
-    # Font family
-    #
-    # Default:
-    #   - (macOS) Menlo
-    #   - (Linux/BSD) monospace
-    #   - (Windows) Consolas
-    family: monospace
-
-    # The `style` can be specified to pick a specific face.
-    #style: Regular
-
-  # Bold font face
+    family: JetBrainsMono Nerd Font
   bold:
-    # Font family
-    #
-    # If the bold family is not specified, it will fall back to the
-    # value specified for the normal font.
-    family: monospace
-
-    # The `style` can be specified to pick a specific face.
+    family: JetBrainsMono Nerd Font
     style: Bold
 
-  # Italic font face
   italic:
-    # Font family
-    #
-    # If the italic family is not specified, it will fall back to the
-    # value specified for the normal font.
-    family: monospace
-
-    # The `style` can be specified to pick a specific face.
+    family: JetBrainsMono Nerd Font
     style: Italic
-
-  # Bold italic font face
   bold_italic:
-    # Font family
-    #
-    # If the bold italic family is not specified, it will fall back to the
-    # value specified for the normal font.
-    family: monospace
-
-    # The `style` can be specified to pick a specific face.
+    family: JetBrainsMono Nerd Font
     style: Bold Italic
 
   # Point size
@@ -374,7 +342,7 @@ font:
   # Record all characters and escape sequences as test data.
   #ref_test: false
 
-#mouse:
+mouse:
   # Click settings
   #
   # The `double_click` and `triple_click` settings control the time
@@ -384,7 +352,7 @@ font:
   #triple_click: { threshold: 300 }
 
   # If this is `true`, the cursor is temporarily hidden when typing.
-  #hide_when_typing: false
+  hide_when_typing: true
 
   #url:
     # URL launcher
