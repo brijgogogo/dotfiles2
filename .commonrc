@@ -45,17 +45,73 @@ fkill() {
 # helper function to copy file path into clipboard via fuzzy find
 alias getpath="find -type f | fzf | sed 's/^..//' | tr -d '\n' | xclip -selection c"
 
+# # ex - archive extractor
+# # usage: ex <file>
+ex ()
+{
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.tar.xz)    tar xJf $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1     ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *)           echo "'$1' cannot be extracted via ex()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+
 # FZF configuration
 # export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --height 40%"
 # options to always apply on fzf in tty
-export FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
+# export FZF_DEFAULT_OPTS="--info=inline --ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
+export FZF_DEFAULT_OPTS="
+--layout=reverse
+--height=80%
+--multi
+--info=inline
+--ansi
+--preview-window 'hidden,right:60%'
+--preview '([[ -f {} ]] && (bat --style=numbers --color=always --style=header,grid {} || cat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'
+--color='hl:148,hl+:154,pointer:032,marker:010,bg+:237,gutter:008'
+--prompt='∼ ' --pointer='▶' --marker='✓'
+--bind '?:toggle-preview'
+--bind 'ctrl-a:select-all'
+--bind 'ctrl-y:execute-silent(echo {+} | pbcopy)'
+--bind 'ctrl-e:execute(echo {+} | xargs -o vim)'
+--bind 'ctrl-v:execute(code {+})'
+"
+# fzf preview: if file use bat other cat, if dir use tree, if error ignore, show only 200 lines
+
 # export FZF_DEFAULT_COMMAND='rg --files --follow --hidden --ignore'
 # use fd as the default source for fzf instead of find
-export FZF_DEFAULT_COMMAND='fd --type f --follow --hidden --exclude .git'
+# export FZF_DEFAULT_COMMAND='fd --type f --follow --hidden --exclude .git'
+export FZF_DEFAULT_COMMAND='fd --follow --hidden --exclude .git --exclude 'node_modules''
+
 # Ctrl-T on terminal searches directory
-# export FZF_CTRL_T_COMMAND='fd --type d --follow --hidden --exclude .git --color=always'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
+# ALT-C's command
+export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND --type d"
+
+# for more info see fzf/shell/completion.zsh
+_fzf_compgen_path() {
+    fd . "$1"
+}
+
+_fzf_compgen_dir() {
+    fd --type d . "$1"
+}
 
 # Set up Node Version Manager
 source /usr/share/nvm/init-nvm.sh
+

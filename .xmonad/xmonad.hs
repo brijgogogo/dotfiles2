@@ -42,8 +42,6 @@ main = do
   -- xmonad $ docks $ ewmh def
 
 
-
-
 myFont :: String
 myFont = "xft:Liberation Mono:regular:size=9:antialias=true:hinting=true"
 
@@ -107,6 +105,7 @@ myManageHook = composeAll
     , stringProperty "_NET_WM_NAME" =? "Emulator" --> doFloat
     , isFullscreen                  --> doFullFloat
     ]
+-- composeAll: automatically combine every item in the list with the <+> operator
 
 myKeys :: [(String, X ())]
 myKeys =
@@ -123,13 +122,14 @@ myKeys =
   , ("M-S-p", spawn "screenshot")
 
   , ("M-,", spawn "firefox")
-  , ("M-w", spawn "alacritty -e 'openwiki'")
-  , ("M-v", spawn "alacritty -e 'nvim'")
+  -- , ("M-w", spawn "alacritty -e 'openwiki'")
+  -- , ("M-v", spawn "alacritty -e 'nvim'")
   , ("M-s", spawn "launch_dmenu")
   , ("M-m", withFocused minimizeWindow)
   , ("M-S-m", withLastMinimized maximizeWindowAndFocus)
   , ("M-j", BW.focusUp) -- skips minimized  windows
   , ("M-k", BW.focusDown) -- skips minimized windows
+  , ("M-S-<Space>", sendMessage ToggleStruts) -- toggles struts, thereby allows windows to draw over xmobar/panel
   -- , ("M-m", BW.focusMaster)
 
   -- Switch to single screen mode
@@ -189,8 +189,10 @@ defaults =
         fullscreenEventHook <+>
         -- minimizeEventHook <+>
         handleEventHook def
-    -- , layoutHook = smartBorders(avoidStruts $ myLayout)
-    , layoutHook = avoidStruts $ myLayout
+    , layoutHook = smartBorders(avoidStruts $ myLayout)
+    -- avoidStruts: no window is allowed in panel
+    -- smartBorders: doesn't draw borders on windows that seem fullscreened
+    -- , layoutHook = avoidStruts $ myLayout
     , manageHook = manageDocks <+> myManageHook  <+> manageHook def
     , logHook = do
         logHook def

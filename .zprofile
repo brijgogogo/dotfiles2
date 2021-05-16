@@ -1,5 +1,9 @@
-# read .bashrc
-[[ -f ~/.zshrc ]] && . ~/.zshrc
+# read .zshrc
+# [[ -f ~/.zshrc ]] && . ~/.zshrc
+
+if [ -f "$HOME/.commonrc" ]; then
+  source "$HOME/.commonrc"
+fi
 
 
 # Start graphical server on tty1 if not already running.
