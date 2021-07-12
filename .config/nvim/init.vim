@@ -162,18 +162,21 @@ nmap <leader>y% :let @+ = expand("%:p")<cr>
 """""""""""
 " let g:fzf_prefer_tmux = 1
 " nnoremap <C-p> :<C-u>FZF<CR>
+
 " search files under current directory
-nnoremap <C-p> :FZF<CR>
-" search buffers
-" nnoremap <leader>; :Buffers<CR>
-" search history
-" nnoremap <leader>h :History<CR>
 " C-T : new tab
 " C-X : new split
 " C-V : new vertical split
 " FZF - Tab to select multiple files, Alt-A to select all. Enter will populate
-"
+nnoremap <C-p> :FZF<CR>
 
+nnoremap <leader>ff :Files<CR>
+nnoremap <leader>fb :Buffers<CR>
+nnoremap <leader>fw :Windows<CR>
+nnoremap <leader>fh :History<CR>
+nnoremap <leader>fm :Marks<CR>
+" [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
 
 " the quickfix list (navigate using :cnext/prev of cn/cp)
 map <C-j> :cn<cr>
@@ -183,6 +186,7 @@ map <leader>Q :copen<cr>
 
 
 "map <C-f> :Rg<cr>
+nnoremap <leader>; :Rg<cr>
 " nnoremap <silent> ; :Rg<cr>
 
 command! BufOnly execute '%bd|e#|bd#'
@@ -554,5 +558,11 @@ set spellfile=~/.config/nvim/spell/en.utf-8.add
 hi SpellBad gui=undercurl guifg=#8d99ae
 " SpellLocal, SpellRare, SpellCap
 
+" delete current file
+nnoremap <leader>rm :call delete(expand('%')) \| bdelete!<CR><C-O>
 
-
+" i3 config syntax
+aug i3config_ft_detection
+  au!
+  au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config
+aug end

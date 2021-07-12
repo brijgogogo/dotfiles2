@@ -5,6 +5,7 @@ intern=DP-4
 extern1=DP-2.8
 extern2=DP-2.1
 extern3=DP-0
+extern4=HDMI-0
 
 if xrandr | grep "$extern1 connected"; then
 	xrandr --output "$extern1" --auto --output "$extern2" --off --output "$intern" --off
@@ -12,6 +13,8 @@ elif xrandr | grep "$extern2 connected"; then
 	xrandr --output "$extern2" --auto --output "$extern1" --off --output "$intern" --off
 elif xrandr | grep "$extern3 connected"; then
 	xrandr --output "$extern3" --auto --output "$intern" --off
+elif xrandr | grep "$extern4 connected"; then
+	xrandr --output "$extern4" --auto --output "$intern" --off
 else
 	xrandr --output "$intern" --auto --output "$extern1" --off --output "$extern2" --off
 fi

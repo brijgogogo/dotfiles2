@@ -71,13 +71,16 @@ mute-mic
 
 # connect-2-monitors-h # 10-monitor.conf is not working. This will show extra flicker on startup
 # connect-one-monitor
+connect-monitors.sh
 
 # start dwm in tty1 and i3 in tty2
 #if [[ $XDG_VTNR -eq 1 ]]; then
   # exec dwm
   # exec startdwm
   # exec spectrwm
-  exec xmonad
+#  exec xmonad
+# exec bspwm
+  exec i3
 notify-send "Welcome!!"
 #elif [[ $XDG_VTNR -eq 2 ]]; then
 #  export DESKTOP_SESSION=plasma

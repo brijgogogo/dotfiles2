@@ -77,6 +77,8 @@ call minpac#add('fatih/vim-go', { 'do' : 'GoInstallBinaries' })
 call minpac#add('neoclide/coc.nvim', { 'branch' : 'release' })
 " :CocInstall coc-go coc-html coc-css coc-json
 
+"i3 config syntax highlight
+call minpac#add('mboughaba/i3config.vim')
 
 command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update('', {'do': 'call minpac#status()'})
 command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()

@@ -5,9 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-HISTSIZE=1000
+HISTSIZE=100000
 HISTFILE=~/.histfile
-SAVEHIST=1000
+SAVEHIST=100000
 setopt autocd beep extendedglob nomatch notify
 
 # vi key bindings
