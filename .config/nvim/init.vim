@@ -566,3 +566,20 @@ aug i3config_ft_detection
   au!
   au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config
 aug end
+
+" nnn
+" Disable default mappings
+let g:nnn#set_default_mappings = 0
+" open nnn
+nnoremap <leader>n :NnnPicker<CR>
+" Start n³ in the current file's directory
+nnoremap <leader>N :NnnPicker %:p:h<CR>
+" open on left
+let g:nnn#layout = { 'left': '~15%' }
+" support opening in tab, splits
+let g:nnn#action = {
+      \ '<c-t>': 'tab split',
+      \ '<c-x>': 'split',
+      \ '<c-v>': 'vsplit' }
+" remember last location in same vim session
+let g:nnn#session = 'local'

@@ -24,8 +24,12 @@ call minpac#add('fcpg/vim-waikiki')
 " call minpac#add('dbeniamine/todo.txt-vim')
 
 call minpac#add('moll/vim-node')
-call minpac#add('tpope/vim-vinegar') " netrw extensions
 call minpac#add('lambdalisue/suda.vim') " sudo read/write
+
+
+" File explorers
+" call minpac#add('tpope/vim-vinegar') " netrw extensions
+call minpac#add('mcchrish/nnn.vim')
 
 call minpac#add('kshenoy/vim-signature') " shows marks
 
@@ -40,6 +44,7 @@ call minpac#add('sonph/onehalf', {'subdir' : 'vim'})
 call minpac#add('arcticicestudio/nord-vim')
 call minpac#add('dracula/vim')
 call minpac#add('fatih/molokai')
+call minpac#add('EdenEast/nightfox.nvim')
 
 
 call minpac#add('ryanoasis/vim-devicons')
