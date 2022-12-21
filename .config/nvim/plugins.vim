@@ -30,6 +30,7 @@ call minpac#add('lambdalisue/suda.vim') " sudo read/write
 " File explorers
 " call minpac#add('tpope/vim-vinegar') " netrw extensions
 call minpac#add('mcchrish/nnn.vim')
+" nvim-tree
 
 call minpac#add('kshenoy/vim-signature') " shows marks
 
@@ -45,6 +46,7 @@ call minpac#add('arcticicestudio/nord-vim')
 call minpac#add('dracula/vim')
 call minpac#add('fatih/molokai')
 call minpac#add('EdenEast/nightfox.nvim')
+call minpac#add('rebelot/kanagawa.nvim')
 
 
 call minpac#add('ryanoasis/vim-devicons')

@@ -127,7 +127,8 @@ set termguicolors " enables true color (24-bit colors) instead of 256 colors (8-
 " endif
 " set background=dark
 " set t_Co=256
-colorscheme onehalfdark " nord onehalflight
+" colorscheme onehalfdark " nord onehalflight
+colorscheme kanagawa
 " let g:rehash256 = 1
 " let g:molokai_original = 1
 " colorscheme molokai

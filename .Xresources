@@ -6,24 +6,22 @@
 ! ╚═╝░░╚═╝╚═╝░░╚═╝╚══════╝╚══════╝░╚═════╝░░╚═════╝░╚═╝░░╚═╝░╚═════╝╚══════╝╚══════╝
 !
 ! -----------------------------------
-Xft.dpi: 102
-!Xft.dpi: 96
-Xft.antialias: true
+
+! Fonts
+Xft.dpi: 96
+!Xft.dpi: 102
 Xft.hinting: true
+Xft.antialias: true
 Xft.rgba: rgb
 Xft.autohint: false
-Xft.hintstyle: hintfull
+Xft.hintstyle: hintslight
+!Xft.hintstyle: hintfull
 Xft.lcdfilter: lcddefault
+
 
 xcursor.theme:            Vanilla-DMZ
 xscreensaver.fade:   false
 xscreensaver.unfade: false
-! ===== urxvt =====
-URxvt.scrollBar: off
-URxvt.font: xft:monospace:size=12
-!URxvt.font: xft:SourceCodePro-Regular:size=9.5:minspace=False
-!URxvt.font: xft:Fira Code Nerd Font:size=8:minspace=False, xft:Symbola:size=11
-URxvt.internalBorder:     22
 
 
 ! =================
@@ -109,3 +107,41 @@ URxvt.internalBorder:     22
 !*color13:	#A3A3C2
 !*color14:	#7575A3
 !*color15:	#a6a6a6
+
+
+! URxvt
+URxvt.scrollBar: false
+URxvt.font: xft:scientifica:size=8, xft:Kochi Gothic:antialias=false
+!URxvt.font: xft:monospace:size=12
+URxvt.boldFont: xft:scientifica:size=8:style=Bold
+URxvt.italicFont: xft:scientifica:size=8:style=Italic
+URxvt.cursorUnderline: true
+URxvt.internalBorder: 15
+!URxvt.internalBorder:     22
+URxvt.letterSpace: 0
+URxvt.perl-ext-common: default,matcher,font-size
+URxvt.font-size.step: 2
+URxvt.scrollBar: off
+!URxvt.font: xft:SourceCodePro-Regular:size=9.5:minspace=False
+!URxvt.font: xft:Fira Code Nerd Font:size=8:minspace=False, xft:Symbola:size=11
+
+! Clickable URLs
+URxvt.url-launcher: firefox
+URxvt.matcher.button: 1
+
+! Use Control-Shift-V/C for X clipboard
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+
+! Resizeable text
+URxvt.keysym.C-Up:     font-size:increase
+URxvt.keysym.C-Down:   font-size:decrease
+
+! rofi
+rofi.font: scientifica Regular 8
+rofi.terminal: urxvtc
+rofi.ssh-client: ssh
+rofi.ssh-command: {terminal} -e {ssh-client} {host}
+

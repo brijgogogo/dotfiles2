@@ -37,7 +37,7 @@ margin-bottom = 0
 monitor = ${env:MONITOR:}
 bottom = true
 width = 100%
-height = 20
+height = 22
 offset-x = 0
 offset-y = 0
 radius = 0
@@ -56,11 +56,24 @@ padding-left = 0
 padding-right = 0
 
 module-margin-left = 1
-module-margin-right = 2
+module-margin-right = 1
 
-font-0 = fixed:pixelsize=10;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=10;1
+; font-N = <fontconfig pattern>;<vertical offset>
+; font-0 = "Tamsyn:pixelsize=12;0"
+; font-1 = "Roboto:size=11:weight=bold;2"
+; font-2 = "Noto Sans:size=11;1"
+font-0 = fixed:pixelsize=11;1
+font-1 = unifont:fontformat=truetype:size=13:antialias=false;0
+font-2 = siji:pixelsize=8;1
+font-3 = unifont:fontformat=truetype:size=10:antialias=false;0
+
+# Mono variant. Icons match the width of other characters
+; font-0 = Iosevka Nerd Font Mono:size=10:antialias=true;2
+# Normal variant. Icons are full sized
+; font-1 = Iosevka Nerd Font:size=10:antialias=true;2
+
+; font-0 = DejaVuSansMono Nerd Font Mono:pixelsize=11:antialias=true;2.5
+; font-1 = DejaVuSans:style=Regular:pixelsize=17:antialias=true;3
 
 modules-left = i3
 modules-center = mpd
@@ -138,13 +151,15 @@ label-unfocused = "%index% %icon%"
 label-unfocused-padding = 2
 
 ; visible = Active workspace on unfocused monitor
-label-visible = "%index% %icon%"
+; label-visible = "%index% %icon%"
+label-visible = "%index%"
 label-visible-background = ${self.label-focused-background}
 label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
-label-urgent = "%index% %icon%"
+; label-urgent = "%index% %icon%"
+label-urgent = "%index%"
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
@@ -155,16 +170,17 @@ label-urgent-padding = 2
 ; ws-icon-[0-9]+ = <label>;<icon>
 ; NOTE: The <label> needs to match the name of the i3 workspace
 ; Neither <label> nor <icon> can contain a semicolon (;)
-ws-icon-0 = 1;
-ws-icon-1 = 2;
-ws-icon-2 = 3;﬏
-ws-icon-3 = 4;ﴬ
-ws-icon-4 = 5;5
-ws-icon-5 = 6;6
-ws-icon-6 = 7;7
-ws-icon-7 = 8;8
-ws-icon-8 = 9;9
-ws-icon-9 = 10;阮
+ws-icon-0 = 1
+ws-icon-1 = 2
+ws-icon-2 = 3﬏
+ws-icon-3 = 4
+ws-icon-4 = 5
+ws-icon-5 = 6
+ws-icon-6 = 7
+ws-icon-7 = 8
+ws-icon-8 = 9
+; ws-icon-9 = 10;阮
+; ws-icon-9 = 10
 ws-icon-default = ♟
 
 [module/mpd]
@@ -189,12 +205,12 @@ label = BL
 bar-width = 10
 bar-indicator = |
 bar-indicator-foreground = #fff
-bar-indicator-font = 2
+bar-indicator-font = 3
 bar-fill = ─
-bar-fill-font = 2
+bar-fill-font = 3
 bar-fill-foreground = #9f78e1
 bar-empty = ─
-bar-empty-font = 2
+bar-empty-font = 3
 bar-empty-foreground = ${colors.foreground-alt}
 
 [module/backlight-acpi]
@@ -205,15 +221,15 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
+format-prefix = ""
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #f90000
+format-underline = #fee440
 label = %percentage:2%%
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
+format-prefix = ""
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #4bffdc
 label = %percentage_used%%
@@ -274,7 +290,7 @@ label = %date% %time%
 type = internal/pulseaudio
 
 format-volume = <label-volume> <bar-volume>
-label-volume = VOL %percentage%%
+label-volume =  %percentage%%
 label-volume-foreground = ${root.foreground}
 
 label-muted = 🔇 muted
@@ -325,38 +341,71 @@ bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
+
 [module/battery]
 type = internal/battery
 battery = BAT0
 adapter = ADP0
 full-at = 98
+; poll-interval = 2
+; time-format = %H:%M
+; content-font=50
 
+; format-font = 2
+; format-charging-font = 2
 format-charging = <animation-charging> <label-charging>
-format-charging-underline = #ffb52a
+format-charging-underline = #adc178
+format-charging-background = ${color.red}
+format-charging-foreground = ${color.foreground}
+format-charging-padding = 1
 
-format-discharging = <animation-discharging> <label-discharging>
-format-discharging-underline = ${self.format-charging-underline}
+label-charging-font = 2
+label-charging = "%percentage%%"
+label-discharging-font = 1
+label-discharging = "%percentage%%"
+
+; format-discharging = <animation-discharging> <label-discharging>
+format-discharging = <ramp-capacity> <label-discharging>
+; format-discharging-underline = ${self.format-charging-underline}
+format-discharging-underline = #ef476f
+format-discharging-background = ${color.red}
+format-discharging-foreground = ${color.foreground}
+format-discharging-padding = 1
+format-discharging-font = 2
 
 format-full-prefix = " "
 format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = ${self.format-charging-underline}
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
+label-full-font = 2
+label-full = " %percentage%%"
+label-full-background = ${color.red}
+label-full-foreground = ${color.foreground}
+label-full-padding = 1
+
+ramp-capacity-0 = ""
+ramp-capacity-1 = ""
+ramp-capacity-2 = ""
+ramp-capacity-3 = ""
+ramp-capacity-4 = ""
 ramp-capacity-foreground = ${colors.foreground-alt}
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
 animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-framerate = 750
 
-animation-discharging-0 = 
-animation-discharging-1 = 
-animation-discharging-2 = 
+animation-discharging-0 = ""
+animation-discharging-1 = ""
+animation-discharging-2 = ""
+animation-discharging-3 = ""
+animation-discharging-4 = ""
 animation-discharging-foreground = ${colors.foreground-alt}
 animation-discharging-framerate = 750
+
 
 [module/temperature]
 type = internal/temperature
@@ -364,7 +413,7 @@ thermal-zone = 0
 warn-temperature = 60
 
 format = <ramp> <label>
-format-underline = #f50a4d
+format-underline = #219ebc
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
 

@@ -4,17 +4,16 @@
 # environment variables. Some entries may override variables
 # set by alacritty itself.
 #env:
-  # TERM variable
-  #
-  # This value is used to set the `$TERM` environment variable for
-  # each instance of Alacritty. If it is not present, alacritty will
-  # check the local terminfo database and use `alacritty` if it is
-  # available, otherwise `xterm-256color` is used.
-  #TERM: xterm-256color
+# TERM variable
+#
+# This value is used to set the `$TERM` environment variable for
+# each instance of Alacritty. If it is not present, alacritty will
+# check the local terminfo database and use `alacritty` if it is
+# available, otherwise `xterm-256color` is used.
+#TERM: xterm-256color
 env:
   TERM: xterm-256color
-
-#window:
+  #window:
   # Window dimensions (changes require restart)
   #
   # Specified in number of columns/lines, not pixels.
@@ -22,7 +21,6 @@ env:
   #dimensions:
   #  columns: 0
   #  lines: 0
-
   # Window position (changes require restart)
   #
   # Specified in number of pixels.
@@ -30,7 +28,6 @@ env:
   #position:
   #  x: 0
   #  y: 0
-
   # Window padding (changes require restart)
   #
   # Blank space added around the window in pixels. This padding is scaled
@@ -38,10 +35,8 @@ env:
   #padding:
   #  x: 0
   #  y: 0
-
   # Spread additional padding evenly around the terminal content.
   #dynamic_padding: false
-
   # Window decorations
   #
   # Values for `decorations`:
@@ -52,7 +47,6 @@ env:
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background, but no title bar buttons
   #decorations: full
-
   # Startup Mode (changes require restart)
   #
   # Values for `startup_mode`:
@@ -63,32 +57,26 @@ env:
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
   #startup_mode: Windowed
-
   # Window title
   #title: Alacritty
-
   # Window class (Linux/BSD only):
   #class:
-    # Application instance name
-    #instance: Alacritty
-    # General application class
-    #general: Alacritty
-
+  # Application instance name
+  #instance: Alacritty
+  # General application class
+  #general: Alacritty
   # GTK theme variant (Linux/BSD only)
   #
   # Override the variant of the GTK theme. Commonly supported values are `dark` and `light`.
   # Set this to `None` to use the default theme variant.
   #gtk_theme_variant: None
-
-#scrolling:
+  #scrolling:
   # Maximum number of lines in the scrollback buffer.
   # Specifying '0' will disable scrolling.
   #history: 10000
-
   # Number of lines the viewport will move for every line scrolled when
   # scrollback is enabled (history > 0).
   #multiplier: 3
-
   # Scroll to the bottom when new text is written to the terminal.
   #auto_scroll: false
 
@@ -100,7 +88,6 @@ env:
 # To prevent unexpected behavior in these applications, it's also required to
 # change the `it` value in terminfo when altering this setting.
 #tabspaces: 8
-
 font:
   normal:
     family: JetBrainsMono Nerd Font
@@ -114,49 +101,42 @@ font:
   bold_italic:
     family: JetBrainsMono Nerd Font
     style: Bold Italic
-
-  # Point size
-  #size: 11.0
-
-  # Offset is the extra space around each character. `offset.y` can be thought of
-  # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
-  #offset:
-  #  x: 0
-  #  y: 0
-
-  # Glyph offset determines the locations of the glyphs within their cells with
-  # the default being at the bottom. Increasing `x` moves the glyph to the right,
-  # increasing `y` moves the glyph upwards.
-  #glyph_offset:
-  #  x: 0
-  #  y: 0
-
-  # Thin stroke font rendering (macOS only)
-  #
-  # Thin strokes are suitable for retina displays, but for non-retina screens
-  # it is recommended to set `use_thin_strokes` to `false`
-  #
-  # macOS >= 10.14.x:
-  #
-  # If the font quality on non-retina display looks bad then set
-  # `use_thin_strokes` to `true` and enable font smoothing by running the
-  # following command:
-  #   `defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO`
-  #
-  # This is a global setting and will require a log out or restart to take
-  # effect.
-  #use_thin_strokes: true
-
-# If `true`, bold text is drawn using the bright color variants.
-#draw_bold_text_with_bright_colors: true
-
-# Colors (Tomorrow Night Bright)
-#colors:
-  # Default colors
-  #primary:
-  #  background: '0x000000'
-  #  foreground: '0xeaeaea'
-
+    # Point size
+    #size: 11.0
+    # Offset is the extra space around each character. `offset.y` can be thought of
+    # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
+    #offset:
+    #  x: 0
+    #  y: 0
+    # Glyph offset determines the locations of the glyphs within their cells with
+    # the default being at the bottom. Increasing `x` moves the glyph to the right,
+    # increasing `y` moves the glyph upwards.
+    #glyph_offset:
+    #  x: 0
+    #  y: 0
+    # Thin stroke font rendering (macOS only)
+    #
+    # Thin strokes are suitable for retina displays, but for non-retina screens
+    # it is recommended to set `use_thin_strokes` to `false`
+    #
+    # macOS >= 10.14.x:
+    #
+    # If the font quality on non-retina display looks bad then set
+    # `use_thin_strokes` to `true` and enable font smoothing by running the
+    # following command:
+    #   `defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO`
+    #
+    # This is a global setting and will require a log out or restart to take
+    # effect.
+    #use_thin_strokes: true
+    # If `true`, bold text is drawn using the bright color variants.
+    #draw_bold_text_with_bright_colors: true
+    # Colors (Tomorrow Night Bright)
+    #colors:
+    # Default colors
+    #primary:
+    #  background: '0x000000'
+    #  foreground: '0xeaeaea'
     # Bright and dim foreground colors
     #
     # The dimmed foreground color is calculated automatically if it is not present.
@@ -164,7 +144,6 @@ font:
     # is `false`, the normal foreground color will be used.
     #dim_foreground: '0x9a9a9a'
     #bright_foreground: '0xffffff'
-
   # Cursor colors
   #
   # Colors which should be used to draw the terminal cursor. If these are unset,
@@ -172,7 +151,6 @@ font:
   #cursor:
   #  text: '0x000000'
   #  cursor: '0xffffff'
-
   # Selection colors
   #
   # Colors which should be used to draw the selection area. If selection
@@ -181,7 +159,6 @@ font:
   #selection:
   #  text: '0xeaeaea'
   #  background: '0x404040'
-
   # Normal colors
   #normal:
   #  black:   '0x000000'
@@ -192,7 +169,6 @@ font:
   #  magenta: '0xc397d8'
   #  cyan:    '0x70c0ba'
   #  white:   '0xeaeaea'
-
   # Bright colors
   #bright:
   #  black:   '0x666666'
@@ -203,7 +179,6 @@ font:
   #  magenta: '0xb77ee0'
   #  cyan:    '0x54ced6'
   #  white:   '0xffffff'
-
   # Dim colors
   #
   # If the dim colors are not set, they will be calculated automatically based
@@ -217,7 +192,6 @@ font:
   #  magenta: '0x80638e'
   #  cyan:    '0x497e7a'
   #  white:   '0x9a9a9a'
-
   # Indexed Colors
   #
   # The indexed colors include all colors from 16 to 256.
@@ -227,49 +201,43 @@ font:
   #   `- { index: 16, color: '0xff00ff' }`
   #
   #indexed_colors: []
-
-# Visual Bell
-#
-# Any time the BEL code is received, Alacritty "rings" the visual bell. Once
-# rung, the terminal background will be set to white and transition back to the
-# default background color. You can control the rate of this transition by
-# setting the `duration` property (represented in milliseconds). You can also
-# configure the transition function by setting the `animation` property.
-#
-# Values for `animation`:
-#   - Ease
-#   - EaseOut
-#   - EaseOutSine
-#   - EaseOutQuad
-#   - EaseOutCubic
-#   - EaseOutQuart
-#   - EaseOutQuint
-#   - EaseOutExpo
-#   - EaseOutCirc
-#   - Linear
-#
-# Specifying a `duration` of `0` will disable the visual bell.
-#visual_bell:
-#  animation: EaseOutExpo
-#  duration: 0
-#  color: '0xffffff'
-
-# Background opacity
-#
-# Window opacity as a floating point number from `0.0` to `1.0`.
-# The value `0.0` is completely transparent and `1.0` is opaque.
-#background_opacity: 1.0
-
-#selection:
+  # Visual Bell
+  #
+  # Any time the BEL code is received, Alacritty "rings" the visual bell. Once
+  # rung, the terminal background will be set to white and transition back to the
+  # default background color. You can control the rate of this transition by
+  # setting the `duration` property (represented in milliseconds). You can also
+  # configure the transition function by setting the `animation` property.
+  #
+  # Values for `animation`:
+  #   - Ease
+  #   - EaseOut
+  #   - EaseOutSine
+  #   - EaseOutQuad
+  #   - EaseOutCubic
+  #   - EaseOutQuart
+  #   - EaseOutQuint
+  #   - EaseOutExpo
+  #   - EaseOutCirc
+  #   - Linear
+  #
+  # Specifying a `duration` of `0` will disable the visual bell.
+  #visual_bell:
+  #  animation: EaseOutExpo
+  #  duration: 0
+  #  color: '0xffffff'
+  # Background opacity
+  #
+  # Window opacity as a floating point number from `0.0` to `1.0`.
+  # The value `0.0` is completely transparent and `1.0` is opaque.
+  #background_opacity: 1.0
+  #selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
-
   # When set to `true`, selected text will be copied to the primary clipboard.
   #save_to_clipboard: false
-
-# Allow terminal applications to change Alacritty's window title.
-#dynamic_title: true
-
-#cursor:
+  # Allow terminal applications to change Alacritty's window title.
+  #dynamic_title: true
+  #cursor:
   # Cursor style
   #
   # Values for `style`:
@@ -277,54 +245,45 @@ font:
   #   - _ Underline
   #   - | Beam
   #style: Block
-
   # If this is `true`, the cursor will be rendered as a hollow box when the
   # window is not focused.
   #unfocused_hollow: true
-
-# Live config reload (changes require restart)
-#live_config_reload: true
-
-# Shell
-#
-# You can set `shell.program` to the path of your favorite shell, e.g. `/bin/fish`.
-# Entries in `shell.args` are passed unmodified as arguments to the shell.
-#
-# Default:
-#   - (macOS) /bin/bash --login
-#   - (Linux/BSD) user login shell
-#   - (Windows) powershell
-#shell:
-#  program: /bin/bash
-#  args:
-#    - --login
-
-# Startup directory
-#
-# Directory the shell is started in. If this is unset, or `None`, the working
-# directory of the parent process will be used.
-#working_directory: None
-
-# WinPTY backend (Windows only)
-#
-# Alacritty defaults to using the newer ConPTY backend if it is available,
-# since it resolves a lot of bugs and is quite a bit faster. If it is not
-# available, the the WinPTY backend will be used instead.
-#
-# Setting this option to `true` makes Alacritty use the legacy WinPTY backend,
-# even if the ConPTY backend is available.
-#winpty_backend: false
-
-# Send ESC (\x1b) before characters when alt is pressed.
-#alt_send_esc: true
-
-#debug:
+  # Live config reload (changes require restart)
+  #live_config_reload: true
+  # Shell
+  #
+  # You can set `shell.program` to the path of your favorite shell, e.g. `/bin/fish`.
+  # Entries in `shell.args` are passed unmodified as arguments to the shell.
+  #
+  # Default:
+  #   - (macOS) /bin/bash --login
+  #   - (Linux/BSD) user login shell
+  #   - (Windows) powershell
+  #shell:
+  #  program: /bin/bash
+  #  args:
+  #    - --login
+  # Startup directory
+  #
+  # Directory the shell is started in. If this is unset, or `None`, the working
+  # directory of the parent process will be used.
+  #working_directory: None
+  # WinPTY backend (Windows only)
+  #
+  # Alacritty defaults to using the newer ConPTY backend if it is available,
+  # since it resolves a lot of bugs and is quite a bit faster. If it is not
+  # available, the the WinPTY backend will be used instead.
+  #
+  # Setting this option to `true` makes Alacritty use the legacy WinPTY backend,
+  # even if the ConPTY backend is available.
+  #winpty_backend: false
+  # Send ESC (\x1b) before characters when alt is pressed.
+  #alt_send_esc: true
+  #debug:
   # Display the time it takes to redraw each frame.
   #render_timer: false
-
   # Keep the log file after quitting Alacritty.
   #persistent_logging: false
-
   # Log level
   #
   # Values for `log_level`:
@@ -335,13 +294,10 @@ font:
   #   - Debug
   #   - Trace
   #log_level: Warn
-
   # Print all received window events.
   #print_events: false
-
   # Record all characters and escape sequences as test data.
   #ref_test: false
-
 mouse:
   # Click settings
   #
@@ -350,31 +306,28 @@ mouse:
   # or triple click.
   #double_click: { threshold: 300 }
   #triple_click: { threshold: 300 }
-
   # If this is `true`, the cursor is temporarily hidden when typing.
   hide_when_typing: true
-
   #url:
-    # URL launcher
-    #
-    # This program is executed when clicking on a text which is recognized as a URL.
-    # The URL is always added to the command as the last parameter.
-    #
-    # When set to `None`, URL launching will be disabled completely.
-    #
-    # Default:
-    #   - (macOS) open
-    #   - (Linux/BSD) xdg-open
-    #   - (Windows) explorer
-    #launcher:
-    #  program: xdg-open
-    #  args: []
-
-    # URL modifiers
-    #
-    # These are the modifiers that need to be held down for opening URLs when clicking
-    # on them. The available modifiers are documented in the key binding section.
-    #modifiers: None
+  # URL launcher
+  #
+  # This program is executed when clicking on a text which is recognized as a URL.
+  # The URL is always added to the command as the last parameter.
+  #
+  # When set to `None`, URL launching will be disabled completely.
+  #
+  # Default:
+  #   - (macOS) open
+  #   - (Linux/BSD) xdg-open
+  #   - (Windows) explorer
+  #launcher:
+  #  program: xdg-open
+  #  args: []
+  # URL modifiers
+  #
+  # These are the modifiers that need to be held down for opening URLs when clicking
+  # on them. The available modifiers are documented in the key binding section.
+  #modifiers: None
 
 # Mouse bindings
 #
@@ -397,7 +350,6 @@ mouse:
 # - `mods` (see key bindings)
 #mouse_bindings:
 #  - { mouse: Middle, action: PasteSelection }
-
 # Key bindings
 #
 # Key bindings are specified as a list of objects. For example, this is the
@@ -499,8 +451,12 @@ mouse:
 # be mapped to the `ReceiveChar` action. Alternatively, you can use `None` for
 # a no-op if you do not wish to receive input characters for that binding.
 key_bindings:
-  - { key: Return,   mods: Control|Shift, action: SpawnNewInstance }
-  - { key: V,        mods: Control|Shift, action: Paste            }
+  - {
+      key: Return,
+      mods: Control|Shift,
+      action: SpawnNewInstance
+    }
+  - { key: V, mods: Control|Shift, action: Paste }
   # (Windows, Linux, and BSD only)
   #- { key: V,        mods: Control|Shift, action: Paste            }
   #- { key: C,        mods: Control|Shift, action: Copy             }
@@ -510,10 +466,8 @@ key_bindings:
   #- { key: Add,      mods: Control,       action: IncreaseFontSize }
   #- { key: Subtract, mods: Control,       action: DecreaseFontSize }
   #- { key: Minus,    mods: Control,       action: DecreaseFontSize }
-
   # (Windows only)
   #- { key: Return,   mods: Alt,           action: ToggleFullscreen }
-
   # (macOS only)
   #- { key: Key0,   mods: Command,         action: ResetFontSize    }
   #- { key: Equals, mods: Command,         action: IncreaseFontSize }
@@ -528,7 +482,6 @@ key_bindings:
   #- { key: Q,      mods: Command,         action: Quit             }
   #- { key: W,      mods: Command,         action: Quit             }
   #- { key: F,      mods: Command|Control, action: ToggleFullscreen }
-
   #- { key: Paste,                    action: Paste                            }
   #- { key: Copy,                     action: Copy                             }
   #- { key: L,         mods: Control, action: ClearLogNotice                   }
@@ -540,10 +493,10 @@ key_bindings:
 
 # Good color schemes : Ayu Dark, Nord, Nova, Solarized Dark
 # https://github.com/alacritty/alacritty/wiki/Color-schemes, Oceanic Next, One Dark
-
 schemes:
   # Colors (Dracula)
-  dracula: &dracula
+  dracula:
+    &dracula
     primary:
       background: '#282a36'
       foreground: '#f8f8f2'
@@ -551,58 +504,60 @@ schemes:
       text: '#44475a'
       cursor: '#f8f8f2'
     normal:
-      black:   '#000000'
-      red:     '#ff5555'
-      green:   '#50fa7b'
-      yellow:  '#f1fa8c'
-      blue:    '#bd93f9'
+      black: '#000000'
+      red: '#ff5555'
+      green: '#50fa7b'
+      yellow: '#f1fa8c'
+      blue: '#bd93f9'
       magenta: '#ff79c6'
-      cyan:    '#8be9fd'
-      white:   '#bfbfbf'
+      cyan: '#8be9fd'
+      white: '#bfbfbf'
     bright:
-      black:   '#4d4d4d'
-      red:     '#ff6e67'
-      green:   '#5af78e'
-      yellow:  '#f4f99d'
-      blue:    '#caa9fa'
+      black: '#4d4d4d'
+      red: '#ff6e67'
+      green: '#5af78e'
+      yellow: '#f4f99d'
+      blue: '#caa9fa'
       magenta: '#ff92d0'
-      cyan:    '#9aedfe'
-      white:   '#e6e6e6'
+      cyan: '#9aedfe'
+      white: '#e6e6e6'
     dim:
-      black:   '#14151b'
-      red:     '#ff2222'
-      green:   '#1ef956'
-      yellow:  '#ebf85b'
-      blue:    '#4d5b86'
+      black: '#14151b'
+      red: '#ff2222'
+      green: '#1ef956'
+      yellow: '#ebf85b'
+      blue: '#4d5b86'
       magenta: '#ff46b0'
-      cyan:    '#59dffc'
-      white:   '#e6e6d1'
+      cyan: '#59dffc'
+      white: '#e6e6d1'
   # Colors (Nord)
-  nord: &nord
-     primary:
-       background: '#2E3440'
-       foreground: '#D8DEE9'
-     normal:
-       black:   '#3B4252'
-       red:     '#BF616A'
-       green:   '#A3BE8C'
-       yellow:  '#EBCB8B'
-       blue:    '#81A1C1'
-       magenta: '#B48EAD'
-       cyan:    '#88C0D0'
-       white:   '#E5E9F0'
-     bright:
-       black:   '#4C566A'
-       red:     '#BF616A'
-       green:   '#A3BE8C'
-       yellow:  '#EBCB8B'
-       blue:    '#81A1C1'
-       magenta: '#B48EAD'
-       cyan:    '#8FBCBB'
-       white:   '#ECEFF4'
+  nord:
+    &nord
+    primary:
+      background: '#2E3440'
+      foreground: '#D8DEE9'
+    normal:
+      black: '#3B4252'
+      red: '#BF616A'
+      green: '#A3BE8C'
+      yellow: '#EBCB8B'
+      blue: '#81A1C1'
+      magenta: '#B48EAD'
+      cyan: '#88C0D0'
+      white: '#E5E9F0'
+    bright:
+      black: '#4C566A'
+      red: '#BF616A'
+      green: '#A3BE8C'
+      yellow: '#EBCB8B'
+      blue: '#81A1C1'
+      magenta: '#B48EAD'
+      cyan: '#8FBCBB'
+      white: '#ECEFF4'
   # Colors (Oceanic Next)
-  oceanic_next: &oceanic_next
+  oceanic_next:
     # Default colors
+    &oceanic_next
     primary:
       background: '#1b2b34'
       foreground: '#d8dee9'
@@ -614,28 +569,29 @@ schemes:
 
     # Normal colors
     normal:
-      black:   '#343d46'
-      red:     '#EC5f67'
-      green:   '#99C794'
-      yellow:  '#FAC863'
-      blue:    '#6699cc'
+      black: '#343d46'
+      red: '#EC5f67'
+      green: '#99C794'
+      yellow: '#FAC863'
+      blue: '#6699cc'
       magenta: '#c594c5'
-      cyan:    '#5fb3b3'
-      white:   '#d8dee9'
+      cyan: '#5fb3b3'
+      white: '#d8dee9'
 
     # Bright colors
     bright:
-      black:   '#343d46'
-      red:     '#EC5f67'
-      green:   '#99C794'
-      yellow:  '#FAC863'
-      blue:    '#6699cc'
+      black: '#343d46'
+      red: '#EC5f67'
+      green: '#99C794'
+      yellow: '#FAC863'
+      blue: '#6699cc'
       magenta: '#c594c5'
-      cyan:    '#5fb3b3'
-      white:   '#d8dee9'
+      cyan: '#5fb3b3'
+      white: '#d8dee9'
   # Colors (One Dark)
-  one_dark: &one_dark
+  one_dark:
     # Default colors
+    &one_dark
     primary:
       background: '#282c34'
       foreground: '#abb2bf'
@@ -644,28 +600,29 @@ schemes:
     normal:
       # NOTE: Use '#131613' for the `black` color if you'd like to see
       # black text on the background.
-      black:   '#282c34'
-      red:     '#e06c75'
-      green:   '#98c379'
-      yellow:  '#d19a66'
-      blue:    '#61afef'
+      black: '#282c34'
+      red: '#e06c75'
+      green: '#98c379'
+      yellow: '#d19a66'
+      blue: '#61afef'
       magenta: '#c678dd'
-      cyan:    '#56b6c2'
-      white:   '#abb2bf'
+      cyan: '#56b6c2'
+      white: '#abb2bf'
 
     # Bright colors
     bright:
-      black:   '#5c6370'
-      red:     '#e06c75'
-      green:   '#98c379'
-      yellow:  '#d19a66'
-      blue:    '#61afef'
+      black: '#5c6370'
+      red: '#e06c75'
+      green: '#98c379'
+      yellow: '#d19a66'
+      blue: '#61afef'
       magenta: '#c678dd'
-      cyan:    '#56b6c2'
-      white:   '#ffffff'
+      cyan: '#56b6c2'
+      white: '#ffffff'
   # Colors (One Light)
-  one_light: &one_light
+  one_light:
     # Default colors
+    &one_light
     primary:
       foreground: '#282c34'
       background: '#ffffff'
@@ -674,94 +631,128 @@ schemes:
     normal:
       # NOTE: Use '#131613' for the `black` color if you'd like to see
       # black text on the background.
-      black:   '#282c34'
-      red:     '#e06c75'
-      green:   '#98c379'
-      yellow:  '#d19a66'
-      blue:    '#61afef'
+      black: '#282c34'
+      red: '#e06c75'
+      green: '#98c379'
+      yellow: '#d19a66'
+      blue: '#61afef'
       magenta: '#c678dd'
-      cyan:    '#56b6c2'
-      white:   '#abb2bf'
+      cyan: '#56b6c2'
+      white: '#abb2bf'
 
     # Bright colors
     bright:
-      black:   '#5c6370'
-      red:     '#e06c75'
-      green:   '#98c379'
-      yellow:  '#d19a66'
-      blue:    '#61afef'
+      black: '#5c6370'
+      red: '#e06c75'
+      green: '#98c379'
+      yellow: '#d19a66'
+      blue: '#61afef'
       magenta: '#c678dd'
-      cyan:    '#56b6c2'
-      white:   '#ffffff'
+      cyan: '#56b6c2'
+      white: '#ffffff'
   # Colors (Solarized Dark)
-  solarized_dark: &solarized_dark
+  solarized_dark:
     # Default colors
+    &solarized_dark
     primary:
       background: '#002b36' # base03
       foreground: '#839496' # base0
 
     # Cursor colors
     cursor:
-      text:   '#002b36' # base03
+      text: '#002b36' # base03
       cursor: '#839496' # base0
 
     # Normal colors
     normal:
-      black:   '#073642' # base02
-      red:     '#dc322f' # red
-      green:   '#859900' # green
-      yellow:  '#b58900' # yellow
-      blue:    '#268bd2' # blue
+      black: '#073642' # base02
+      red: '#dc322f' # red
+      green: '#859900' # green
+      yellow: '#b58900' # yellow
+      blue: '#268bd2' # blue
       magenta: '#d33682' # magenta
-      cyan:    '#2aa198' # cyan
-      white:   '#eee8d5' # base2
+      cyan: '#2aa198' # cyan
+      white: '#eee8d5' # base2
 
     # Bright colors
     bright:
-      black:   '#586e75' # base01
-      red:     '#cb4b16' # orange
-      green:   '#586e75' # base01
-      yellow:  '#657b83' # base00
-      blue:    '#839496' # base0
+      black: '#586e75' # base01
+      red: '#cb4b16' # orange
+      green: '#586e75' # base01
+      yellow: '#657b83' # base00
+      blue: '#839496' # base0
       magenta: '#6c71c4' # violet
-      cyan:    '#93a1a1' # base1
-      white:   '#fdf6e3' # base3
+      cyan: '#93a1a1' # base1
+      white: '#fdf6e3' # base3
   # Colors (Solarized Light)
-  solarized_light: &solarized_light
+  solarized_light:
     # Default colors
+    &solarized_light
     primary:
       background: '#fdf6e3' # base3
       foreground: '#657b83' # base00
 
     # Cursor colors
     cursor:
-      text:   '#fdf6e3' # base3
+      text: '#fdf6e3' # base3
       cursor: '#657b83' # base00
 
     # Normal colors
     normal:
-      black:   '#073642' # base02
-      red:     '#dc322f' # red
-      green:   '#859900' # green
-      yellow:  '#b58900' # yellow
-      blue:    '#268bd2' # blue
+      black: '#073642' # base02
+      red: '#dc322f' # red
+      green: '#859900' # green
+      yellow: '#b58900' # yellow
+      blue: '#268bd2' # blue
       magenta: '#d33682' # magenta
-      cyan:    '#2aa198' # cyan
-      white:   '#eee8d5' # base2
+      cyan: '#2aa198' # cyan
+      white: '#eee8d5' # base2
 
     # Bright colors
     bright:
-      black:   '#002b36' # base03
-      red:     '#cb4b16' # orange
-      green:   '#586e75' # base01
-      yellow:  '#657b83' # base00
-      blue:    '#839496' # base0
+      black: '#002b36' # base03
+      red: '#cb4b16' # orange
+      green: '#586e75' # base01
+      yellow: '#657b83' # base00
+      blue: '#839496' # base0
       magenta: '#6c71c4' # violet
-      cyan:    '#93a1a1' # base1
-      white:   '#fdf6e3' # base3
+      cyan: '#93a1a1' # base1
+      white: '#fdf6e3' # base3
 
+colors:
+  # Default colors
+  primary:
+    background: '0x1f1f28'
+    foreground: '0xdcd7ba'
 
-colors: *one_dark
+  # Normal colors
+  normal:
+    black: '0x090618'
+    red: '0xc34043'
+    green: '0x76946a'
+    yellow: '0xc0a36e'
+    blue: '0x7e9cd8'
+    magenta: '0x957fb8'
+    cyan: '0x6a9589'
+    white: '0xc8c093'
 
+  # Bright colors
+  bright:
+    black: '0x727169'
+    red: '0xe82424'
+    green: '0x98bb6c'
+    yellow: '0xe6c384'
+    blue: '0x7fb4ca'
+    magenta: '0x938aa9'
+    cyan: '0x7aa89f'
+    white: '0xdcd7ba'
+  selection:
+    background: '0x2d4f67'
+    foreground: '0xc8c093'
+
+  indexed_colors:
+    - { index: 16, color: '0xffa066' }
+    - { index: 17, color: '0xff5d62' }
+theme: Kanagawa
 
 # indexed_colors: []

@@ -8,8 +8,10 @@ ext2_on=$(xrandr | grep "$extern2 connected")
 
 if [ ! -z "$ext1_on" ] && [ ! -z "$ext2_on" ]
 then
-  # xrandr --output "$extern2" --mode 2560x1440 --pos 0x0 --rotate normal --output "$extern1" --mode 1920x1080 --pos 2560x0 --rotate normal --output "$intern" --off
-  xrandr --output "$extern1" --mode 1920x1080 --pos 0x0 --rotate normal --output "$extern2" --mode 2560x1440 --pos 1920x0 --rotate normal --output "$intern" --off
+  # xrandr --output "$extern2" --mode 2560x1440 --pos 0x0 --rotate normal --output "$extern1" --mode 1920x1080 --pos 2560x-310 --rotate right --output "$intern" --off
+  xrandr --output "$extern2" --mode 2560x1440 --pos 0x0 --rotate normal --output "$extern1" --mode 1920x1080 --pos 2560x0 --rotate normal --output "$intern" --off
+  # xrandr --output "$extern1" --rotate right
+  # xrandr --output "$extern1" --mode 1920x1080 --pos 0x0 --rotate normal --output "$extern2" --mode 2560x1440 --pos 1920x0 --rotate normal --output "$intern" --off
 elif [ ! -z "$ext2_on" ]
 then
 	xrandr --output "$extern2" --auto --output "$intern" --off
