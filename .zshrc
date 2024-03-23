@@ -87,3 +87,9 @@ bindkey '^ ' autosuggest-accept
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+[ -f "/home/vik/.ghcup/env" ] && source "/home/vik/.ghcup/env" # ghcup-env
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)

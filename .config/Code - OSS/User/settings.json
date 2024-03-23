@@ -1,9 +1,8 @@
 {
     "vim.smartRelativeLine": true,
     "editor.autoClosingBrackets": "never",
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.autoClosingQuotes": "never",
-    "workbench.colorTheme": "Dracula",
+    // "workbench.colorTheme": "Dracula",
     "vim.leader": ",",
     "vim.hlsearch": true,
     "vim.useSystemClipboard": true,
@@ -60,7 +59,7 @@
             "commands": [
                 "editor.action.rename"
             ]
-        }
+        },
         {
             "before": [
                 "<leader>",
@@ -101,5 +100,7 @@
                 "extension.vim_escape"
             ],
         }
-    ]
+    ],
+    "editor.fontSize": 16,
+    "editor.minimap.enabled": false
 }
