@@ -1,0 +1,11 @@
+# Screenshot directory
+# scr_dir="${HOME}/docs/screenshots"
+
+flameshot gui -d 5000
+# flameshot gui -d 2000 -p $scr_dir
+# flameshot gui -p $scr_dir
+#
+#
+
+# maim --noopengl -s | xclip -selection clipboard -t image/png
+
